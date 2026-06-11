@@ -1,0 +1,3 @@
+interface:
+  display_name: "Repo Stewardship"
+  short_description: "Safely acquire, inspect, sync, validate, and prepare Git"
