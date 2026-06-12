@@ -5,7 +5,7 @@ description: Production-grade Tauri v2 engineering guidelines — guest-host arc
 
 # Tauri Engineering
 
-Strict operational guidelines for building, securing, and shipping Tauri v2 applications.
+Strict operational guidelines for building, securing, and shipping Tauri v2 applications. For Rust-side patterns (ownership, error handling, async, testing), see [rust-engineering](../rust-engineering/SKILL.md).
 
 ## Architecture
 

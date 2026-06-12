@@ -47,6 +47,12 @@ Strict operational guidelines for generating, refactoring, and reviewing product
 - IO-bound → `tokio::spawn`. CPU-bound → `tokio::task::spawn_blocking` or Rayon.
 - **Never** hold `std::sync::Mutex` across `.await`. Use `tokio::sync::Mutex` or channels.
 
+## Observability
+
+- `tracing` crate for structured, span-based instrumentation. `#[instrument]` on async functions.
+- `tracing-subscriber` with `fmt` layer (dev) and `json` layer (prod). Filter via `RUST_LOG` env var.
+- Pair with `tracing-opentelemetry` for distributed trace export when needed.
+
 ## Project structure
 
 - `main.rs` minimal entry point, `lib.rs` core domain logic. Cargo Workspaces for multi-crate.
@@ -61,6 +67,8 @@ Strict operational guidelines for generating, refactoring, and reviewing product
 ## Architecture, security, performance
 
 Domain-specific backends (axum, actix-web, Tauri, WASM), database paradigms (SQLx, SeaORM, Diesel), supply-chain auditing, unsafe constraints, deployment: [ARCHITECTURE.md](ARCHITECTURE.md), [SECURITY-PERF.md](SECURITY-PERF.md).
+
+For Tauri desktop/mobile apps, see the [tauri-engineering](../tauri-engineering/SKILL.md) skill — it covers guest-host architecture, IPC commands, ACL security, and binary optimization.
 
 ## Anti-patterns & review checklist
 

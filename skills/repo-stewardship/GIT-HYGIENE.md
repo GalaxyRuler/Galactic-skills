@@ -33,6 +33,20 @@ git merge "origin/$DEFAULT_BRANCH"     # merge-commit policy
 git push origin "<FEATURE_BRANCH>"
 ```
 
+PowerShell equivalent:
+
+```powershell
+git status --short --branch
+git remote -v
+git fetch origin --prune
+$DefaultBranch = (git symbolic-ref --short refs/remotes/origin/HEAD) -replace '^origin/', ''
+git switch $DefaultBranch
+git pull --ff-only origin $DefaultBranch
+git switch "<FEATURE_BRANCH>"
+git merge "origin/$DefaultBranch"   # OR: git rebase
+git push origin "<FEATURE_BRANCH>"
+```
+
 `git pull --ff-only` updates only on fast-forward and fails on divergence — safer for automated agents than an implicit merge.
 
 **Merge vs rebase:** merge when the repo accepts merge commits and branch history matters. Rebase when the repo requires linear history. Never rebase a branch already shared with others without user approval.

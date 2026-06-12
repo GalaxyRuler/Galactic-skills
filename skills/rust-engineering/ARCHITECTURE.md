@@ -38,3 +38,10 @@ Avoid N+1: never emit sequential DB queries inside loops — batch or eager-load
 - Strict separation: JS/TS frontend, Rust backend.
 - Communicate via IPC Commands (`invoke()`) and Events.
 - Never expose raw filesystem or process access to the frontend.
+- Full Tauri guide: [tauri-engineering](../tauri-engineering/SKILL.md).
+
+## Edge / Serverless (Cloudflare Workers)
+
+- Target `wasm32-unknown-unknown`. Use `worker` crate for bindings.
+- Keep binary size minimal — no `std::net`, no `tokio`. Use `worker::Fetch` for HTTP.
+- `wrangler dev` for local testing, `wrangler deploy` for publish.

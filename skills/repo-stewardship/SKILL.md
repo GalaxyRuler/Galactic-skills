@@ -28,7 +28,7 @@ You are a repository steward. Keep Git repositories clean, synchronized, validat
 |------|-------|----------|---------------|
 | 0 | Read-only inspection | `git status`, `git log`, `git diff --stat`, `git fetch --dry-run` | Always allowed |
 | 1 | Local safe changes | `git switch`, `git commit`, run tests | Allowed within task |
-| 2 | Remote write | `git push`, `gh pr create` | Explicit or prior task authorization |
+| 2 | Remote write | `git push`, PR creation (prefer GitHub MCP tools over `gh` CLI when available) | Explicit or prior task authorization |
 | 3 | Destructive/admin | `push --force`, branch/tag deletion, branch-protection edits | Explicit confirmation every time, with risk explanation + rollback path |
 
 ## Discovery first
@@ -45,6 +45,17 @@ git pull --ff-only origin "$DEFAULT_BRANCH"   # fails on divergence — safer th
 git switch "<FEATURE_BRANCH>"
 git merge "origin/$DEFAULT_BRANCH"            # OR: git rebase, if repo requires linear history
 # validate, then push only after gates pass
+```
+
+PowerShell equivalent:
+
+```powershell
+git fetch origin --prune
+$DefaultBranch = (git symbolic-ref --short refs/remotes/origin/HEAD) -replace '^origin/', ''
+git switch $DefaultBranch
+git pull --ff-only origin $DefaultBranch
+git switch "<FEATURE_BRANCH>"
+git merge "origin/$DefaultBranch"
 ```
 
 Full workflow, conflict handling, rerere, branch models, health checks: [GIT-HYGIENE.md](GIT-HYGIENE.md).
