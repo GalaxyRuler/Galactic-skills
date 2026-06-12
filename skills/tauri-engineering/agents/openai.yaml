@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tauri Engineering"
+  short_description: "Production-grade Tauri v2 engineering guidelines — guest-host"

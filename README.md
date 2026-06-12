@@ -36,6 +36,7 @@ Copy-Item -Recurse skills\<skill-name> "$env:USERPROFILE\.codex\skills\"    # Co
 |-------|-------------|
 | [repo-stewardship](skills/repo-stewardship) | Safely acquire, inspect, sync, validate, and prepare Git repositories for review or delivery — permission tiers, quality gates, changelog/SemVer discipline, PR readiness reports |
 | [rust-engineering](skills/rust-engineering) | Production-grade Rust engineering guidelines — ownership, type-driven design, error handling, async/concurrency, testing, security, and performance |
+| [tauri-engineering](skills/tauri-engineering) | Tauri v2 engineering — guest-host architecture, IPC commands, ACL security, plugins, binary optimization, auto-updates, and CI/CD |
 
 ## How skills get here
 
