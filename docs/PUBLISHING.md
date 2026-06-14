@@ -16,8 +16,9 @@ Every skill in this repo goes through a publish pipeline before landing on `main
 3. **Dual-runtime packaging** — each skill ships with:
    - `SKILL.md` — Claude Code format (YAML frontmatter with `name` + `description`)
    - `agents/openai.yaml` — Codex companion manifest
+   - `README.md` — human-facing landing page (what it does, when to use, what's inside, install)
 
-4. **Catalog update** — the README skill table gets a row.
+4. **Docs update** — the top-level README skill table gets a row, and any other index or catalog that enumerates skills is kept in sync.
 
 5. **Commit + push** — one commit per skill: `publish: add <skill-name>`.
 
@@ -25,6 +26,7 @@ Every skill in this repo goes through a publish pipeline before landing on `main
 
 ```
 skills/<skill-name>/
+├── README.md          # human-facing landing page (required)
 ├── SKILL.md           # main instructions (required, <100 lines)
 ├── agents/
 │   └── openai.yaml    # Codex manifest (required)
@@ -36,5 +38,6 @@ skills/<skill-name>/
 
 - `description:` frontmatter states what the skill does and when to trigger it ("Use when...")
 - SKILL.md stays under ~100 lines; detail goes in reference files, one level deep
+- Every skill folder has a `README.md` (what it does, when to use, what's inside, install) — kept in sync when modules change
 - No time-sensitive info
 - Concrete examples included
