@@ -1,0 +1,37 @@
+name: angel-investing
+description: >
+  Investor-side evaluation OS for early-stage startups — replacing the pitch
+  narrative with validated evidence to decide where capital and time go. Use
+  when screening an inbound pitch deck, preparing or running a founder
+  interview, planning or executing due diligence, sanity-checking valuation or
+  SAFE/KISS/convertible/term-sheet terms, reading a cap table or modeling
+  dilution, assessing portfolio fit, or writing an investment memo and a
+  go/no-go recommendation. Triggers on pitch deck review, due diligence,
+  SAFE/convertible note, term sheet, valuation cap, cap table, dilution,
+  critical success factor (CSF), LTV:CAC, NRR, pre-seed/seed/angel, investment
+  memo. For founder-side venture work (building the company, fundraising prep)
+  use startup-consulting instead.
+instructions: |
+  Read SKILL.md in this folder for the core principles, the three-tier funnel
+  (5-minute screen -> founder interview -> diligence), the CSF model with
+  superpower-zone / critical-flaw override, the stage-calibration table, the
+  8-step workflow, and the escalation boundaries. The spine: screen for
+  rejection first; pick 3-7 deal-specific critical success factors rather than
+  a generic rubric; a critical flaw in a high-importance CSF caps the
+  recommendation regardless of the weighted average; keep facts, founder
+  claims, assumptions, and analyst judgment separate; the founder interview
+  produces hypotheses and diligence validates them; model ownership, dilution,
+  and terms, not just price; size every check inside a power-law portfolio;
+  never give legal, tax, or regulated financial advice or tell the user to
+  invest. Reference files: SCREENING.md (Tier 1 screen, CSF design, Tier 2
+  interview, question bank, red/green-flag library), DILIGENCE.md (Tier 3
+  staged validation, evidence hierarchy and labeling, decision rules,
+  external-verification gaps), VALUATION-TERMS.md (valuation by stage,
+  SAFE/convertible math and the capitalization-definition gotcha, priced-equity
+  terms, cap table and dilution), PORTFOLIO-FIT.md (portfolio construction,
+  investor thesis/fit, deal flow, syndicates, post-investment support),
+  SCORING.md (unified weighted rubric, CSF override, thresholds, 15-area risk
+  taxonomy, critical red flags, anti-patterns), TEMPLATES.md (investment memo,
+  screen and intake forms, founder brief, trackers, decision tree, prompt pack).
+model: o4-mini
+tools: []

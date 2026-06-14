@@ -34,6 +34,7 @@ Copy-Item -Recurse skills\<skill-name> "$env:USERPROFILE\.codex\skills\"    # Co
 
 | Skill | Description |
 |-------|-------------|
+| [angel-investing](skills/angel-investing) | Investor-side early-stage evaluation OS — 5-minute screen, deal-specific Critical Success Factors with superpower/critical-flaw scoring, three-tier diligence, valuation & SAFE/convertible/term-sheet review, cap-table & dilution modeling, portfolio fit, and investment-memo generation |
 | [consulting-engagements](skills/consulting-engagements) | Run a solo/small-practice B2B consulting engagement end to end — discovery, proposals/SOW, source-ledger research, issue trees, executive briefs/decks/decision memos, QA gates, and confidentiality controls, with a fabrication firewall and human-approval gates |
 | [repo-stewardship](skills/repo-stewardship) | Safely acquire, inspect, sync, validate, and prepare Git repositories for review or delivery — permission tiers, quality gates, changelog/SemVer discipline, PR readiness reports |
 | [rust-engineering](skills/rust-engineering) | Production-grade Rust engineering guidelines — ownership, type-driven design, error handling, async/concurrency, testing, security, and performance |
