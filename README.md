@@ -34,6 +34,7 @@ Copy-Item -Recurse skills\<skill-name> "$env:USERPROFILE\.codex\skills\"    # Co
 
 | Skill | Description |
 |-------|-------------|
+| [consulting-engagements](skills/consulting-engagements) | Run a solo/small-practice B2B consulting engagement end to end — discovery, proposals/SOW, source-ledger research, issue trees, executive briefs/decks/decision memos, QA gates, and confidentiality controls, with a fabrication firewall and human-approval gates |
 | [repo-stewardship](skills/repo-stewardship) | Safely acquire, inspect, sync, validate, and prepare Git repositories for review or delivery — permission tiers, quality gates, changelog/SemVer discipline, PR readiness reports |
 | [rust-engineering](skills/rust-engineering) | Production-grade Rust engineering guidelines — ownership, type-driven design, error handling, async/concurrency, testing, security, and performance |
 | [startup-consulting](skills/startup-consulting) | Evidence-based startup advisory from idea validation to scaling — stage classification, problem/customer discovery, bottom-up market sizing, unit economics, GTM, pricing, pitch-deck review, fundraising prep, and the scaling gate |
