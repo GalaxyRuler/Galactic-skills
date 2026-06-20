@@ -1,0 +1,26 @@
+name: obsidian-writing
+description: >
+  Writing, editing, and organizing content in an Obsidian vault — notes,
+  frontmatter/properties, wikilinks, callouts, Dataview/Tasks queries, Bases
+  (.base) dashboards, Canvas (.canvas) files, Templater automation,
+  citation/literature workflows, and vault git commits. Use when working inside
+  an Obsidian vault, building live dashboards, authoring Canvas files, writing
+  Templater automation, or setting up an anti-drift vault system (one-note-one-
+  home routing, self-routing templates, project boards), and when driving
+  Obsidian through its Local REST API or an Obsidian MCP server.
+instructions: |
+  Read SKILL.md in this folder for the core workflow: orient before writing
+  (read the vault's CLAUDE.md/AGENTS.md/GEMINI.md constitution, open the
+  relevant board/MOC, match an existing note of the same type), pick the
+  narrowest tool surface (Obsidian MCP > Local REST API > filesystem), the
+  Markdown essentials, vault git-commit hygiene (never stage .obsidian/), and
+  the common-mistakes table. Replace every <placeholder> with the vault's own
+  values; the vault system is opinionated and optional. Reference files:
+  MARKDOWN-SYNTAX.md (links, embeds, callouts, block IDs, math, frontmatter),
+  QUERIES.md (Dataview + Tasks patterns and live refresh), CANVAS-AND-BASES.md
+  (JSON Canvas authoring + .base YAML dashboards), PLUGINS.md (plugin playbook,
+  REST/MCP, sync and version control), VAULT-SYSTEM.md (one-note-one-home
+  routing, per-type frontmatter schemas, self-routing Templater, drift
+  checklist, end-of-task board ritual, literature workflow).
+model: o4-mini
+tools: []
