@@ -1,0 +1,3 @@
+interface:
+  display_name: "Test UI"
+  short_description: "Generic, stack-agnostic UI testing process for any web project"
