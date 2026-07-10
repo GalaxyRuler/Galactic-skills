@@ -1,0 +1,9 @@
+# latexmkrc -- pdfLaTeX + Biber, no shell escape.
+$pdf_mode   = 1;      # 1 = pdflatex; 5 = xelatex; 4 = lualatex
+$bibtex_use = 2;      # run biber/bibtex as needed (and clean its output)
+$biber      = 'biber %O %B';
+$pdflatex   = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# If you enable \makeindex in main.tex, latexmk builds the index automatically
+# with makeindex; the .ind/.ilg files below are cleaned by `latexmk -c`.
+$clean_ext  = 'bbl run.xml ind ilg idx';

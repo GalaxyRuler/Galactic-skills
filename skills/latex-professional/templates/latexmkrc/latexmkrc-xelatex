@@ -1,0 +1,7 @@
+# latexmkrc-xelatex -- XeLaTeX engine (Unicode + system fonts via fontspec).
+# Copy to your project root as `latexmkrc` (or `.latexmkrc`), then run `latexmk`.
+$pdf_mode = 5;       # 5 = xelatex
+$xelatex  = 'xelatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# Extra files to remove on `latexmk -c` (run.xml only appears with Biber).
+$clean_ext = 'bbl run.xml';

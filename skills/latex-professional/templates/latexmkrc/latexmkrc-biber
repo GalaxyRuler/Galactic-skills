@@ -1,0 +1,10 @@
+# latexmkrc-biber -- pdfLaTeX + Biber (the default for these templates).
+# Use with BibLaTeX loaded as \usepackage[backend=biber]{biblatex}.
+# Copy to your project root as `latexmkrc` (or `.latexmkrc`), then run `latexmk`.
+$pdf_mode   = 1;                     # pdflatex; use 5 for xelatex, 4 for lualatex
+$bibtex_use = 2;                     # run biber/bibtex as needed (and clean output)
+$biber      = 'biber %O %B';         # force the Biber backend
+$pdflatex   = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# Extra files to remove on `latexmk -c`.
+$clean_ext  = 'bbl run.xml';

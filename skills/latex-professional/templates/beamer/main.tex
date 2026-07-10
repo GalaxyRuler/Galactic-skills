@@ -1,0 +1,99 @@
+% !TEX program = pdflatex
+% Minimal Beamer deck -- built-in theme only (no external theme packages).
+% Build:  latexmk main.tex     (or: pdflatex main / biber main / pdflatex x2)
+\documentclass[aspectratio=169]{beamer}
+
+% Built-in theme (ships with Beamer -- no extra dependencies).
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Remove the navigation symbols row for a cleaner slide.
+\setbeamertemplate{navigation symbols}{}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% Show a small bibliography icon instead of the default article glyph.
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\graphicspath{{figures/}}
+
+\title{A Minimal Beamer Deck}
+\subtitle{Built-in theme, BibLaTeX + Biber}
+\author{Author One}
+\institute{Placeholder University}
+\date{\today}
+
+\begin{document}
+
+% ---- Title frame -----------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---- Outline ---------------------------------------------------------------
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Bullets}
+
+% ---- Bullet frame ----------------------------------------------------------
+\begin{frame}{A Bullet Frame}
+  \begin{itemize}
+    \item First placeholder point.
+    \item Second placeholder point, citing a source~\cite{placeholder-slides}.
+    \item Third placeholder point.
+  \end{itemize}
+
+  \begin{block}{A block}
+    Placeholder highlighted content.
+  \end{block}
+\end{frame}
+
+\section{Figure}
+
+% ---- Figure frame ----------------------------------------------------------
+\begin{frame}{A Figure}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{example.pdf}
+    \caption{Placeholder figure. Put \texttt{example.pdf} in \texttt{figures/}.}
+  \end{figure}
+\end{frame}
+
+\section{Table}
+
+% ---- Table frame -----------------------------------------------------------
+\begin{frame}{A Table}
+  \begin{table}
+    \centering
+    \caption{Placeholder table using \texttt{booktabs} rules.}
+    \begin{tabular}{lrr}
+      \toprule
+      Method   & Accuracy & Time (s) \\
+      \midrule
+      Baseline & 0.81     & 12.4     \\
+      Ours     & 0.89     &  9.7     \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+% ---- References frame ------------------------------------------------------
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography[heading=none]
+\end{frame}
+
+\end{document}

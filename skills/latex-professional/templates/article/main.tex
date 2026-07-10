@@ -1,0 +1,87 @@
+% !TEX program = pdflatex
+% Minimal article template -- BibLaTeX + Biber.
+% Build:  latexmk main.tex        (uses the bundled latexmkrc)
+% Clean:  latexmk -c
+\documentclass[11pt,a4paper]{article}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% --- Hyperlinks & smart cross-references ------------------------------------
+% Load hyperref late and cleveref last.
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% All graphics live under figures/ (relative path).
+\graphicspath{{figures/}}
+
+\title{A Minimal Article Template}
+\author{Author One\thanks{Affiliation, \texttt{author@example.org}}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is a placeholder abstract. Replace it with a concise summary of the
+work: motivation, method, and the key result.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Placeholder introduction. Cite a source like this~\cite{placeholder-article}.
+Cross-reference the equation in \Cref{eq:example}, the table in
+\Cref{tab:example}, and the figure in \Cref{fig:example}.
+
+\section{Method}
+\label{sec:method}
+A single display equation, labelled for reference:
+\begin{equation}
+  \label{eq:example}
+  E = mc^{2}.
+\end{equation}
+
+\section{Results}
+\label{sec:results}
+
+\begin{table}[htbp]
+  \centering
+  \caption{A placeholder table using \texttt{booktabs} rules.}
+  \label{tab:example}
+  \begin{tabular}{lrr}
+    \toprule
+    Method   & Accuracy & Time (s) \\
+    \midrule
+    Baseline & 0.81     & 12.4     \\
+    Ours     & 0.89     &  9.7     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{example.pdf}
+  \caption{A placeholder figure. Put \texttt{example.pdf} in \texttt{figures/}.}
+  \label{fig:example}
+\end{figure}
+
+\section{Conclusion}
+\label{sec:conclusion}
+Placeholder conclusion.
+
+\printbibliography
+
+\end{document}

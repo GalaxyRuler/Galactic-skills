@@ -1,0 +1,74 @@
+% !TEX program = pdflatex
+% Book skeleton (standard `book` class) -- BibLaTeX + Biber.
+% Build:  latexmk main.tex
+% Clean:  latexmk -c
+\documentclass[11pt,a4paper,openright]{book}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% --- Optional index (uncomment \makeindex and the two \printindex lines) ----
+% \usepackage{makeidx}
+% \makeindex   % then build the index with `makeindex main.idx`
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% --- Hyperlinks & smart cross-references ------------------------------------
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{figures/}}
+
+\title{A Book Skeleton}
+\author{Author One}
+\date{\today}
+
+\begin{document}
+
+% ============================================================================
+% Front matter: roman page numbers, unnumbered chapters.
+% ============================================================================
+\frontmatter
+\maketitle
+\tableofcontents
+
+\chapter{Preface}
+Placeholder preface. Front-matter chapters are unnumbered.
+
+% ============================================================================
+% Main matter: arabic page numbers, numbered chapters, parts.
+% ============================================================================
+\mainmatter
+
+\part{First Part}
+\label{part:first}
+
+% Each chapter lives in its own file under chapters/.
+\input{chapters/chapter1}
+
+\chapter{Second Chapter}
+\label{ch:second}
+Placeholder second chapter. Cite a source such as~\cite{placeholder-book}
+and cross-reference \Cref{ch:first}.
+
+% ============================================================================
+% Back matter: bibliography, index -- unnumbered chapters.
+% ============================================================================
+\backmatter
+
+\printbibliography[heading=bibintoc]
+
+% \printindex   % uncomment together with \makeindex above
+
+\end{document}

@@ -1,0 +1,8 @@
+# latexmkrc-pdflatex -- pdfLaTeX engine, no shell escape.
+# Copy to your project root as `latexmkrc` (or `.latexmkrc`), then run `latexmk`.
+# Bibliography backend is auto-detected; see the -biber / -bibtex variants to pin it.
+$pdf_mode  = 1;      # 1 = pdflatex
+$pdflatex  = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# Extra files to remove on `latexmk -c` (run.xml only appears with Biber).
+$clean_ext = 'bbl run.xml';
