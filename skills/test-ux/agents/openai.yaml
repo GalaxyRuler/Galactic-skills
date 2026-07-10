@@ -1,0 +1,3 @@
+interface:
+  display_name: "Test UX"
+  short_description: "Generic, stack-agnostic UX testing process for any product —"

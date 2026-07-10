@@ -1,0 +1,3 @@
+interface:
+  display_name: "Powershell Safe Vars"
+  short_description: "Use when writing or editing PowerShell commands or scripts"
