@@ -1,0 +1,62 @@
+% !TEX program = pdflatex
+% Multi-chapter report template -- BibLaTeX + Biber.
+% Build:  latexmk main.tex
+% Clean:  latexmk -c
+\documentclass[11pt,a4paper]{report}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% --- Hyperlinks & smart cross-references ------------------------------------
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{figures/}}
+
+\title{A Multi-Chapter Report}
+\author{Author One\\ \texttt{author@example.org}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Placeholder abstract for the report. Summarise the scope, approach, and
+principal findings in a few sentences.
+\end{abstract}
+
+\tableofcontents
+
+% Each chapter lives in its own file under sections/.
+\input{sections/intro}
+
+\chapter{Analysis}
+\label{ch:analysis}
+Placeholder analysis chapter. Refer back to \Cref{ch:intro} as needed and
+cite sources such as~\cite{placeholder-report}.
+
+% ----------------------------------------------------------------------------
+% Appendices
+% ----------------------------------------------------------------------------
+\appendix
+
+\chapter{Supplementary Material}
+\label{ch:appendix}
+Placeholder appendix content.
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

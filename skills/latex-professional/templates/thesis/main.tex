@@ -1,0 +1,112 @@
+% !TEX program = pdflatex
+% GENERIC thesis skeleton on the standard `report` class -- BibLaTeX + Biber.
+%
+% IMPORTANT: This is NOT an official university thesis class. Most institutions
+% require their own document class (margins, title page, declaration pages,
+% approval sheet). Check your graduate school's rules and, when they provide a
+% class, replace `\documentclass{report}` with it and adapt the title page.
+% This skeleton exists so you can start writing chapters immediately.
+%
+% Build:  latexmk main.tex
+% Clean:  latexmk -c
+\documentclass[12pt,a4paper,oneside]{report}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{setspace}       % \onehalfspacing etc. (many schools require this)
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% --- Hyperlinks & smart cross-references ------------------------------------
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{figures/}}
+
+\begin{document}
+
+% ============================================================================
+% Title page (generic -- replace with your institution's required layout).
+% ============================================================================
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\LARGE\bfseries A Generic Thesis Title\par}
+  \vspace{1.5cm}
+  {\large by\par}
+  \vspace{0.5cm}
+  {\large Author One\par}
+  \vfill
+  {\large A thesis submitted in partial fulfilment\\
+   of the requirements for the degree of\\
+   Doctor of Philosophy\par}
+  \vspace{1cm}
+  {\large Department of Placeholder Studies\\
+   Placeholder University\par}
+  \vspace{1cm}
+  {\large \today\par}
+\end{titlepage}
+
+% Roman numerals for the preliminary pages.
+\pagenumbering{roman}
+\onehalfspacing
+
+% ---- Abstract --------------------------------------------------------------
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Placeholder abstract. Summarise the thesis: problem, approach, contributions,
+and findings.
+
+% ---- Acknowledgements ------------------------------------------------------
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+Placeholder acknowledgements.
+
+% ---- Front-matter lists ----------------------------------------------------
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ============================================================================
+% Main matter.
+% ============================================================================
+\clearpage
+\pagenumbering{arabic}
+
+% Each chapter lives in its own file under chapters/.
+\input{chapters/introduction}
+
+\chapter{Literature Review}
+\label{ch:litreview}
+Placeholder literature review. Cite sources such as~\cite{placeholder-thesis}.
+
+\chapter{Conclusion}
+\label{ch:conclusion}
+Placeholder conclusion.
+
+% ============================================================================
+% Appendices.
+% ============================================================================
+\appendix
+
+\chapter{Additional Results}
+\label{ch:appendix}
+Placeholder appendix.
+
+% ============================================================================
+% Bibliography.
+% ============================================================================
+\printbibliography[heading=bibintoc]
+
+\end{document}

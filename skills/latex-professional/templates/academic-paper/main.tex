@@ -1,0 +1,108 @@
+% !TEX program = pdflatex
+% Generic preprint skeleton on the standard `article` class -- BibLaTeX + Biber.
+%
+% IMPORTANT: This is a NEUTRAL preprint layout, NOT a substitute for any venue
+% template. When you target IEEE, ACM, Springer, Elsevier, etc., download and
+% use that venue's OFFICIAL class (IEEEtran, acmart, sn-jnl, elsarticle, ...)
+% and move your content into it. Do not ship this layout to a venue that
+% mandates its own.
+%
+% Build:  latexmk main.tex
+% Clean:  latexmk -c
+%
+% For a two-column preprint, add `twocolumn` to the class options:
+%   \documentclass[11pt,a4paper,twocolumn]{article}
+\documentclass[11pt,a4paper]{article}
+
+% --- Encoding & fonts (pdfLaTeX) --------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Core packages ----------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% --- Bibliography: BibLaTeX with the Biber backend --------------------------
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+
+% --- Hyperlinks & smart cross-references ------------------------------------
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{figures/}}
+
+% A lightweight "keywords" command (venue classes usually provide their own).
+\providecommand{\keywords}[1]{\par\noindent\textbf{Keywords:} #1}
+
+\title{A Generic Preprint Skeleton}
+\author{%
+  Author One\\
+  \small Department of Placeholder Studies, Placeholder University\\
+  \small \texttt{author.one@example.org}
+  \and
+  Author Two\\
+  \small Placeholder Research Lab\\
+  \small \texttt{author.two@example.org}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Placeholder abstract. State the problem, the approach, and the main result in a
+few sentences suitable for a preprint server.
+\end{abstract}
+
+\keywords{placeholder, template, preprint, LaTeX}
+
+\section{Introduction}
+\label{sec:intro}
+Placeholder introduction. Cite prior work such as~\cite{placeholder-paper} and
+cross-reference \Cref{eq:model}, \Cref{tab:results}, and \Cref{fig:overview}.
+
+\section{Method}
+\label{sec:method}
+A display equation:
+\begin{equation}
+  \label{eq:model}
+  \hat{y} = f_\theta(x).
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{example.pdf}
+  \caption{Placeholder overview figure. Put \texttt{example.pdf} in
+    \texttt{figures/}.}
+  \label{fig:overview}
+\end{figure}
+
+\section{Results}
+\label{sec:results}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Placeholder results using \texttt{booktabs} rules.}
+  \label{tab:results}
+  \begin{tabular}{lrr}
+    \toprule
+    Method   & Metric A & Metric B \\
+    \midrule
+    Baseline & 0.81     & 12.4     \\
+    Ours     & 0.89     &  9.7     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Conclusion}
+\label{sec:conclusion}
+Placeholder conclusion.
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,13 @@
+# latexmkrc-bibtex -- pdfLaTeX + traditional BibTeX.
+# Use only if you deliberately want BibTeX rather than Biber, e.g. with
+# \usepackage[backend=bibtex]{biblatex} or a classic \bibliographystyle +
+# \bibliography workflow (natbib). Biber is the recommended default; prefer
+# latexmkrc-biber unless a venue or legacy setup forces BibTeX.
+# Copy to your project root as `latexmkrc` (or `.latexmkrc`), then run `latexmk`.
+$pdf_mode   = 1;                     # pdflatex
+$bibtex_use = 2;                     # run bibtex as needed (and clean output)
+$bibtex     = 'bibtex %O %B';        # force the BibTeX backend
+$pdflatex   = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error %O %S';
+
+# Extra files to remove on `latexmk -c` (BibTeX produces .bbl but no run.xml).
+$clean_ext  = 'bbl';
