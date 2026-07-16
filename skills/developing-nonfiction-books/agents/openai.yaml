@@ -1,0 +1,12 @@
+interface:
+  display_name: Non-Fiction Book Development and Writing
+  short_description: Develop rigorous, source-aware nonfiction books
+  default_prompt: Use $developing-nonfiction-books to diagnose my nonfiction book
+    project and recommend the next stage.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
