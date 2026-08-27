@@ -203,6 +203,35 @@ class NotebookEnterpriseClient:
             idempotent=True,
         )
 
+    def create_audio_overview(
+        self,
+        notebook_id: str,
+        *,
+        source_ids: Sequence[str] | None = None,
+        episode_focus: str | None = None,
+        language_code: str | None = None,
+    ) -> dict[str, Any]:
+        """Generate an audio overview. Omitting source_ids uses every source.
+
+        This is the documented way to run the notebook's own model over a chosen
+        subset of sources with an instruction — it returns a generated artifact,
+        not answer text with citations.
+        """
+        body: dict[str, Any] = {}
+        if source_ids:
+            body["sourceIds"] = list(source_ids)
+        if episode_focus:
+            body["episodeFocus"] = episode_focus
+        if language_code:
+            body["languageCode"] = language_code
+
+        return self._request(
+            "POST",
+            f"{self.config.parent}/notebooks/{notebook_id}/audioOverviews",
+            json_body=body,
+            idempotent=False,
+        )
+
     def capabilities(self) -> dict[str, Any]:
         return {
             "provider": "google-gemini-notebook-enterprise",
@@ -212,6 +241,7 @@ class NotebookEnterpriseClient:
                 "sources.list": True,
                 "sources.add": True,
                 "sources.delete": True,
+                "notebooks.audioOverview": True,
                 "notebooks.query": False,
             },
             "queryStatus": {
@@ -334,8 +364,17 @@ def _selftest() -> None:
         raise AssertionError("failed create must not be silently retried/swallowed")
     assert len(session.calls) == 1
 
-    # Query stays gated.
-    assert client.capabilities()["capabilities"]["notebooks.query"] is False
+    # Audio overview sends only the fields that were supplied.
+    session = FakeSession([FakeResponse(200, {})])
+    client = NotebookEnterpriseClient(cfg, session=session)
+    client.create_audio_overview("nb_1", source_ids=["src_1"], episode_focus="risks")
+    assert session.calls[0][3] == {"sourceIds": ["src_1"], "episodeFocus": "risks"}
+    assert session.calls[0][1].endswith("/notebooks/nb_1/audioOverviews")
+
+    # Query stays gated; audio overview is not sold as an answer.
+    caps = client.capabilities()["capabilities"]
+    assert caps["notebooks.query"] is False
+    assert caps["notebooks.audioOverview"] is True
     try:
         client.query_notebook("nb_1", "anything?")
     except PublicQueryEndpointUnavailable:

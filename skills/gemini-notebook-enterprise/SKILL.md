@@ -13,7 +13,7 @@ Three layers get confused constantly. Separate them before writing any code:
 2. **Gemini Notebook Enterprise** — a Google Cloud product served by the Discovery Engine API. This is the only supported automation surface.
 3. **Your agent** (Codex, Claude Code, a cron job) — an *execution plane* that calls that API. It is never an alternative Notebook provider.
 
-**Core principle: the management surface is real and useful; notebook Q&A is a negotiated capability, not an assumed endpoint.** Build inventory, provenance, source administration and health monitoring today; make query a capability the provider reports rather than a URL you guess.
+**Core principle: the documented surface is larger than people assume and smaller than they hope; treat notebook Q&A as a negotiated capability, not an assumed endpoint.** Inventory, provenance, source administration, health monitoring — and generated artifacts over selected sources (audio overview) — are documented today. Structured answer-plus-citations is not. Make query a capability the provider reports rather than a URL you guess.
 
 ## When to use
 
@@ -45,8 +45,8 @@ projects/{project}/locations/{location}/notebooks/{notebook_id}/sources/{source_
 
 1. **Never invent an endpoint.** If a method is not in the current published REST/RPC reference, it does not exist for your code. An IAM permission name or an audit-log service method is evidence a capability exists internally — it is not a public contract.
 2. **Never call private frontend RPCs or reuse browser cookies.** Not "temporarily", not "just to unblock the demo."
-3. **Verify the surface before quoting it.** The snapshot in `references/API-SURFACE.md` ages. Check the live reference for the methods you are about to call — see the `research-grounding` skill.
-4. **Capability-gate query.** Ship `query_notebook` in the tool contract; have the official provider return `unsupported_public_api` until Google publishes a Notebook Q&A transport.
+3. **Verify the surface before quoting it.** The snapshot in `references/API-SURFACE.md` ages, and its rows are tagged **[verified]** / **[unverified]** for exactly that reason. Check the live docs before telling a user something is or is not supported — see the `research-grounding` skill. Never quote consumer-tier limits for an Enterprise notebook.
+4. **Capability-gate query.** Ship `query_notebook` in the tool contract; have the official provider return `unsupported_public_api` until Google publishes a Notebook Q&A transport. **But check the generation surface first** — `notebooks.audioOverviews.create` takes `sourceIds` + `episodeFocus`, so "selected sources + an instruction" is already automatable as a generated artifact. Ask what the answer is *for* before declaring anything impossible.
 5. **Never silently substitute a different retrieval engine and call the result "NotebookLM."** A separate RAG index over the same documents is a *different system*; label it as one.
 6. **Never mutate or delete by title.** Resolve to a resource name first; surface ambiguity when several titles match.
 7. **HTTP 200 ≠ ready.** A created source is asynchronous. Poll status to `COMPLETE` or `ERROR`.
@@ -64,6 +64,7 @@ Return this before attempting anything query-shaped:
   "capabilities": {
     "notebooks.list": true, "notebooks.get": true,
     "sources.list": true, "sources.add": true, "sources.delete": true,
+    "notebooks.audioOverview": true,
     "notebooks.query": false
   },
   "queryStatus": { "reason": "unsupported_public_api" }

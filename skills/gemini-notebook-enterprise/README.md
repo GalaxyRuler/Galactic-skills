@@ -13,9 +13,12 @@ while keeping notebook Q&A an explicitly negotiated capability instead of a gues
 - Maps the published **method surface**: notebooks create/get/listRecentlyViewed/batchDelete/share,
   sources batchCreate/get/batchDelete/uploadFile — with the accepted OAuth scopes and the IAM
   permission each one actually checks
-- Names the **query asymmetry** honestly: an IAM permission and audit-log service methods prove the
-  capability exists internally, but no public Q&A transport is published — so the skill ships a
-  **capability contract** that reports `unsupported_public_api` rather than inventing a URL, and
+- Covers the **generation surface**, which is where most "that's not automatable" answers go wrong:
+  `notebooks.audioOverviews.create` takes `sourceIds` plus an `episodeFocus` instruction, so
+  running the notebook's own model over a chosen subset of sources **is** documented — as a
+  generated artifact, not as answer text with citations
+- Names the **query asymmetry** honestly: no public Q&A transport is published, so the skill ships
+  a **capability contract** that reports `unsupported_public_api` rather than inventing a URL, and
   forbids silently substituting a different RAG engine and calling the answer "NotebookLM"
 - Treats source creation as an **asynchronous state machine** (`PENDING` → `COMPLETE` / `ERROR`),
   preserving Google's structured `failureReason` families (paywall, blocked domain, Drive download
@@ -90,7 +93,8 @@ python skills/gemini-notebook-enterprise/scripts/notebook_client.py --selftest
 
 ## A note on freshness
 
-The Notebook API is a `v1alpha` preview surface. `references/API-SURFACE.md` is a **snapshot** —
-the skill's standing instruction is to re-check the live REST/RPC reference before quoting method
-availability, scopes, or limits, and to re-run capability negotiation rather than trusting this
-document's account of what is unsupported.
+The Notebook API is a `v1alpha` preview surface. `references/API-SURFACE.md` is a **snapshot**, and
+its rows carry **[verified]** / **[unverified]** tags recording what was confirmed against Google's
+published how-to pages versus what came from reference pages that could not be machine-read. The
+skill's standing instruction is to re-check the live docs before quoting method availability,
+scopes, or limits — and never to quote consumer-tier NotebookLM limits for an Enterprise notebook.
