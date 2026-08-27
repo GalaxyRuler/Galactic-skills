@@ -1,0 +1,12 @@
+interface:
+  display_name: Gemini Notebook Enterprise API
+  short_description: Automate NotebookLM Enterprise via its documented API
+  default_prompt: Use $gemini-notebook-enterprise to inventory my Gemini Notebook Enterprise
+    notebooks and sources, and tell me what is actually automatable.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
