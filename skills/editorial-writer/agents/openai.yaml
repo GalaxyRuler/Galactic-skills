@@ -1,0 +1,13 @@
+interface:
+  display_name: Editorial Writer
+  short_description: Research, architect, draft, and audit publication-grade long-form
+    articles and series
+  default_prompt: Use $editorial-writer to turn my brief into an argument architecture
+    and evidence ledger before drafting.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
