@@ -1,6 +1,6 @@
 # Editorial Writer
 
-Produce publication-grade long-form articles and multi-part series the way an editorial desk does — brief and thesis first, evidence ledger before prose, argument architecture before drafting, hard gates before polish.
+Produce publication-grade long-form articles and multi-part series the way an editorial desk does — brief and thesis first, evidence ledger before prose, argument architecture before drafting, hard gates before polish. Ships an Arabic (Saudi/GCC) editorial layer for localized editions.
 
 ## What it does
 
@@ -13,6 +13,13 @@ Produce publication-grade long-form articles and multi-part series the way an ed
 - Revises one failure class at a time: argument → evidence → structure → clarity → style → search → line edit
 - Treats a series as one argument distributed through time, with a per-part anti-repetition list so installments don't each re-explain the premise
 - Puts search packaging last, and forbids it from changing the thesis or introducing claims
+- Types every claim (factual, causal, forecast, comparative, regulatory, attribution, inference, judgment, illustration) because each carries a different evidence requirement — and demands a second independent source for high-risk claims not resting on primary evidence
+- Leaves `[SOURCE NEEDED]` / `[VERIFY]` / `[EXAMPLE NEEDED]` / `[AUTHOR INPUT NEEDED]` markers instead of plausible filler, and blocks publication on an unresolved marker
+- Scores headlines across six families and fails any headline asserting more than the body demonstrates
+- Runs a **reverse-outline pass** on labels rather than prose — the diagnosis that works where "make it flow better" does not
+- Treats a similarity score as a review trigger, never a plagiarism verdict, and separately tests originality against your own archive
+- Ships an **Arabic (Saudi/GCC) layer**: native-authored MSA rather than calqued English, project termbase, verified official institution names, Arabic-appropriate readability (never an English formula), and a hard gate against widening Saudi evidence into a GCC claim
+- Returns a full **publish packet** — ledgers, unresolved items, scores, metadata, named human approval — plus a corrections and freshness record
 - Reports a **semantic diff** alongside the text diff — which claims moved, which qualification disappeared
 
 ## When to use
@@ -23,9 +30,10 @@ Not for social posts, captions, five-bullet summaries, landing-page copy, releas
 
 ## What's inside
 
-- [SKILL.md](SKILL.md) — non-negotiables, the four modes, the eight-stage pipeline, hard gates vs. optimization metrics, series rules, search packaging, output contract
-- [references/RUBRICS.md](references/RUBRICS.md) — weighted scorecard, hard-gate table, argument and evidence grading prompts, cohesion/clarity/originality diagnostics, diagnostics report format, trigger discipline
-- [references/TEMPLATES.md](references/TEMPLATES.md) — brief, thesis triage, source card, claim ledger, disputed-claim resolution, argument architecture, section outline, article skeleton, series manifest, revision log
+- [SKILL.md](SKILL.md) — non-negotiables and evidence markers, the five modes, the pipeline, depth-class routing, hard gates vs. optimization metrics, series rules, search packaging, output contract
+- [references/RUBRICS.md](references/RUBRICS.md) — weighted scorecard, hard-gate table, claim-type taxonomy and corroboration rule, argument and evidence grading prompts, cohesion/clarity/originality diagnostics, headline scoring, similarity and archive-originality controls, diagnostics report format, trigger discipline
+- [references/TEMPLATES.md](references/TEMPLATES.md) — brief, thesis triage, source card, claim ledger, disputed-claim resolution, argument architecture, section outline, article skeleton, structure library, reverse-outline pass, series manifest, revision log, publish packet, corrections log
+- [references/LOCALE-AR-GCC.md](references/LOCALE-AR-GCC.md) — Arabic Saudi/GCC editorial layer: register, calque detection with before/after, geographic scoping gate, termbase format, institution names, numbers, local evidence routing, bilingual-edition rules
 - `agents/openai.yaml` — Codex companion manifest
 
 ## Install

@@ -1,13 +1,13 @@
 ---
 name: editorial-writer
-description: Use when researching, architecting, drafting, auditing, or revising a publication-grade long-form article, essay, analytical piece, thought-leadership post, or multi-part editorial series — where thesis, originality, evidence, argument quality, and citation integrity matter more than word count. Also use to audit citations in an existing draft, challenge a draft's argument, or plan a series. Not for social posts, captions, summaries, landing-page copy, or single-sentence copy edits.
+description: Use when researching, architecting, drafting, auditing, or revising a publication-grade long-form article, essay, analytical piece, thought-leadership post, or multi-part editorial series — where thesis, originality, evidence, argument quality, and citation integrity matter more than word count. Also use to audit citations in an existing draft, challenge a draft's argument, plan a series, or produce a localized Arabic (Saudi/GCC) edition of a business article. Not for social posts, captions, summaries, landing-page copy, or single-sentence copy edits.
 ---
 
 # Editorial Writer
 
 Run an editorial production system, not a one-shot copywriter. Convert a brief into a researched argument, hold a claim-and-evidence ledger, draft against an explicit architecture, audit against hard gates, then revise one failure class at a time.
 
-Read [RUBRICS.md](references/RUBRICS.md) for the gates, scorecard, and grading prompts. Read [TEMPLATES.md](references/TEMPLATES.md) for copy-ready working forms. Load only what the current stage needs.
+Read [RUBRICS.md](references/RUBRICS.md) for the gates, scorecard, and grading prompts. Read [TEMPLATES.md](references/TEMPLATES.md) for copy-ready working forms. Read [LOCALE-AR-GCC.md](references/LOCALE-AR-GCC.md) when the locale is Arabic (Saudi/GCC). Load only what the current stage needs.
 
 ## 1. Non-negotiables
 
@@ -21,6 +21,17 @@ Read [RUBRICS.md](references/RUBRICS.md) for the gates, scorecard, and grading p
 8. Never imitate the phrasing, voice, or passages of a named publication or author. Target its editorial *properties*.
 9. When the author's real expertise or observations are supplied, preserve them — do not smooth them into generic prose.
 
+Where evidence is missing mid-draft, leave an explicit marker rather than plausible prose. Markers are cheap; a fabricated sentence that reads well is not recoverable by a later pass.
+
+```
+[SOURCE NEEDED]        a claim that needs support before publication
+[VERIFY]               a figure, name, date, or official title to confirm
+[EXAMPLE NEEDED]       a slot where a real case must replace a placeholder
+[AUTHOR INPUT NEEDED]  only the author can supply this — experience, data, judgment
+```
+
+An unresolved marker on a core claim blocks publication. Never silently resolve one by writing something that sounds right.
+
 ## 2. Modes
 
 | Mode | Trigger | Deliverable |
@@ -29,6 +40,7 @@ Read [RUBRICS.md](references/RUBRICS.md) for the gates, scorecard, and grading p
 | `series` | "a three-part series on…" | Series thesis, part map, per-part contracts, then parts |
 | `audit` | "check the citations / challenge this draft" | Diagnostics report + prioritized fix list, no rewrite |
 | `refine` | "improve this draft" | Diagnosis first, then targeted passes only |
+| `localize` | "produce the Arabic edition" | Same argument and evidence, rebuilt natively — see [LOCALE-AR-GCC.md](references/LOCALE-AR-GCC.md) |
 
 Default to `audit` when handed an existing draft with a vague "make it better." Diagnose before generating.
 
@@ -37,7 +49,7 @@ Default to `audit` when handed an existing draft with a vague "make it better." 
 ```
 brief → evidence ledger → argument architecture → outline gate
       → draft → evidence audit → diagnostics → layered revision
-      → search packaging → line edit → human approval
+      → locale pass → search packaging → line edit → human approval
 ```
 
 Never collapse stages into one pass. A style pass that runs before the evidence audit will silently launder unsupported claims into confident prose.
@@ -51,6 +63,19 @@ Establish, in the author's words wherever possible:
 - **Original insight** — what a sophisticated reader does not already believe.
 - **Expertise basis** — research, operating experience, interviews, proprietary data, field observation.
 - **Reader payoff** — the decision or behavior that changes after reading.
+- **Locale and market** — language edition and the market the evidence must cover.
+
+Reject a brief that cannot answer three questions: **who must care, what will they understand afterward that they do not now, and what decision might they make differently?** A brief that answers none of these is a topic, not an assignment.
+
+Pick a depth class in the brief. These are routing ranges chosen by the intellectual job, not quotas — there is no publication-optimal word count, and none should be encoded as one. Stop when the argument is complete; expand only when more evidence, mechanism, qualification, or application adds reader value.
+
+| Class | English | Arabic | Use when |
+|---|---:|---:|---|
+| Executive insight | 800–1,300 | 700–1,200 | One sharp argument, one mechanism |
+| Standard analytical | 1,500–2,300 | 1,200–2,000 | Default long-form format |
+| Deep dive | 2,500–4,000 | 2,000–3,500 | Multi-source, competing explanations |
+| Flagship | 4,000–7,000 | 3,500–6,000 | Original research or an industry thesis |
+| Series installment | 1,400–2,200 | 1,200–2,000 | One self-contained contribution |
 
 If thesis, originality, or authority basis is missing, **stop and ask**. Do not substitute model-generated platitudes. Offer 2–4 candidate theses explicitly labeled as hypotheses for the author to validate or reject.
 
@@ -82,6 +107,8 @@ Paragraph-level outline. Every section states its argumentative job. Delete any 
 
 ### 3.5 Draft
 
+Pick the structure that fits the argument rather than forcing every piece into one template — the skeleton library is in [TEMPLATES.md](references/TEMPLATES.md) (contrarian, data-led, playbook, case-led, explainer, opinion, trend, series installment).
+
 Open with tension: a concrete situation, a paradox, a surprising finding, or a consequential question. Ban generic throat-clearing ("In today's fast-paced world", "X has become increasingly important").
 
 Each evidence section carries claim → evidence → warrant → example → implication. Examples must do argumentative work; a decorative anecdote is cut.
@@ -109,6 +136,9 @@ Do not fix a structure problem by rewriting the whole piece. Report what changed
 - no identifiable thesis
 - near-copy of a source beyond quotation
 - contradicting evidence known and omitted
+- unresolved `[SOURCE NEEDED]` or `[VERIFY]` marker on a core claim
+- headline or dek asserting more than the body demonstrates
+- a geographic or population claim stated wider than its evidence covers
 - explicit user constraint violated
 
 **Optimization metrics** — readability, cohesion, pacing, section balance, title quality, search coverage, style. Improve these; never trade a hard gate for them. A citation-integrity failure is not offset by a high readability score.
@@ -131,6 +161,8 @@ The packaging pass may not introduce a claim, change the thesis, or add keyword 
 
 ## 7. Output
 
-Deliver artifacts, not only prose: brief, ledger, argument architecture, article, diagnostics, warnings, revision log. Surface unresolved risks explicitly — an unavailable source is reported as unavailable, never quietly dropped and never invented.
+Deliver artifacts, not only prose — the publish packet in [TEMPLATES.md](references/TEMPLATES.md): article, headline options, dek, brief, source and claim ledgers, unresolved verification items, diagnostics scorecard, search metadata, and the human-review checklist. Surface unresolved risks explicitly — an unavailable source is reported as unavailable, never quietly dropped and never invented.
+
+Published articles get a corrections and freshness record. A material error gets a dated correction, not a silent edit. Volatile content — statistics, regulation, prices, appointments — gets scheduled re-checks; bumping an "updated" date without substantive change is a freshness claim the article has not earned.
 
 For claim verification against live sources, pair with the `research-grounding` skill. For book-length projects, use `developing-nonfiction-books` instead.

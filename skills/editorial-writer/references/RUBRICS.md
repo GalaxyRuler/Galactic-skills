@@ -36,7 +36,11 @@ Each is a blocking failure. Report the specific location, not a summary verdict.
 | Citation correctness | A citation points to a source that does not support the sentence it is attached to |
 | Suppressed contradiction | A known contradicting source is omitted rather than addressed |
 | Near-copy | Extended overlap with a source beyond marked quotation |
+| Unresolved marker | A `[SOURCE NEEDED]` or `[VERIFY]` marker still attached to a core claim |
+| Headline integrity | The headline or dek asserts more than the body demonstrates |
+| Scope overreach | A geographic or population claim stated wider than its evidence covers |
 | Constraint violation | An explicit user constraint (length, scope, prohibition) is broken |
+| Confidentiality | Private, personal, or client-confidential material surfaced without clearance |
 
 A gate marked `not_run` (tool unavailable, source unreachable) is reported as `not_run`. Never score a gate you did not actually check.
 
@@ -71,7 +75,30 @@ Checks that catch the common failures:
 
 ## 4. Evidence grading
 
-Per claim, record: id, claim, type (fact / interpretation / experience / inference), importance, sources, source tier, the exact span that supports it, support status, contradicting sources, and required qualification.
+Per claim, record: id, claim, type, importance, sources, source tier, the exact span that supports it, support status, contradicting sources, and required qualification.
+
+Claim type decides the required treatment. Most bad articles fail here — by treating a causal or regulatory claim with the evidence standard of a descriptive one.
+
+| Type | Example | Required treatment |
+|---|---|---|
+| Factual | "Revenue rose 17%." | Source required |
+| Causal | "X caused Y." | Strong evidence, or qualify to correlation |
+| Forecast | "Demand will rise." | Named forecast source plus its assumptions |
+| Comparative | "The largest in the region." | Comparable dataset, same basis, same date |
+| Regulatory | "Companies must file by…" | Primary legal or regulator source, current version |
+| Attribution | "The CEO said…" | Original transcript or report, not a second-hand paraphrase |
+| Inference | "This suggests…" | Source the underlying facts and label the inference as one |
+| Judgment | "Leaders should…" | State the reasoning and the conditions under which it holds |
+| Illustration | A hypothetical scenario | Marked explicitly as hypothetical, never as a case |
+
+For a high-risk claim — contentious, reputational, regulatory, or load-bearing for the thesis — apply a corroboration rule:
+
+```
+IF claim_risk == high AND source_tier != A
+THEN require a second independent source, or an explicit editor exception
+```
+
+Independent means genuinely independent. Three outlets reporting the same wire story are one source.
 
 Then compute, by hand or by tool:
 
@@ -100,6 +127,8 @@ Judge without scripts by reading for:
 
 Diagnose causes, not a single number. Useful signals: median and 90th-percentile sentence length, sentence-length variance (uniform length reads as machine cadence), paragraph-length distribution, passive-voice rate, nominalization rate, jargon density, and count of specialist terms used before being defined.
 
+These signals are calibrated for English. Do not compute them on Arabic text — see [LOCALE-AR-GCC.md](LOCALE-AR-GCC.md) §1 for why and what to judge instead.
+
 Do not force elementary readability on an expert audience. The target is **clarity at the intended intellectual level**, not minimum syllable count. A readability score improved by shortening sentences while destroying a qualification is a regression.
 
 ## 7. Originality
@@ -122,7 +151,58 @@ Name the closest pre-existing idea and state exactly what is new relative to it.
 
 If the author supplied no expertise basis, cap the reported originality claim and say why.
 
-## 8. Diagnostics report format
+## 8. Headline integrity
+
+Generate across families, then score — do not settle on the first workable line.
+
+```
+Decision      What CEOs Should Settle Before They Deploy AI Agents
+Contrarian    Your AI Strategy May Be Solving the Wrong Problem
+Causal        Why Faster Automation Can Slow Decision-Making
+Question      What Happens When AI Recommends a Decision Nobody Owns?
+Evidence-led  What 200 Transformation Projects Reveal About AI Governance
+Framework     A Four-Question Test for Which Decisions AI Should Touch
+```
+
+```
++2  specific
++2  accurately represents the article's thesis
++2  useful to the target reader
++1  creates legitimate curiosity
++1  contains vocabulary a reader would actually search
+-3  exaggerated
+-3  asserts something the body does not demonstrate
+-2  vague abstraction
+-2  generic business or AI cliche
+-2  sensational without evidence
+```
+
+A headline fails regardless of score when its proposition is not demonstrated in the body. That is an accuracy failure, not a packaging preference — it is the one place where a strong article most easily becomes a dishonest one.
+
+## 9. Similarity, attribution, and archive originality
+
+Three separate controls. They are not interchangeable:
+
+| Control | Question it answers |
+|---|---|
+| Attribution | Did we credit material we deliberately used? |
+| Similarity detection | Does this text overlap unusually with existing text? |
+| Editorial originality | Does this article contribute anything new? |
+
+**A similarity score is not a plagiarism verdict.** Similarity tools measure textual matching; they cannot distinguish a quoted passage, a shared technical definition, and lifted prose. Never auto-reject on a percentage. Route matches to a human: exclude legitimate quotation and reference, inspect the substantive matches, rewrite unattributed dependence, then approve.
+
+Also test originality against **your own archive** — the failure a similarity tool will not catch is a genuinely new wording of an argument you already published.
+
+```
+Compared with our existing archive, what does this piece contribute
+that is new: claim, evidence, framework, case, counterargument,
+or implication?
+
+If none, recommend updating the existing article rather than
+publishing a second page that competes with it.
+```
+
+## 10. Diagnostics report format
 
 Return diagnosis before any rewrite.
 
@@ -145,7 +225,7 @@ NOT RUN             textual-overlap check (sources S5, S6 unreachable)
 
 Rank by severity, not by reading order. Say which pass fixes what, and stop — do not begin rewriting until the user picks.
 
-## 9. Trigger discipline
+## 11. Trigger discipline
 
 This skill should fire on: long-form article requests, series planning, citation audits, argument challenges, draft diagnosis.
 

@@ -67,7 +67,7 @@ Fill `Does NOT` for every source. It is the field that stops overclaiming.
 | C3 | {{claim}} | fact | core | S3 vs S7 | disputed | state both, explain divergence |
 ```
 
-`type`: fact / interpretation / experience / inference.
+`type`: factual / causal / forecast / comparative / regulatory / attribution / inference / judgment / illustration — each carries a different evidence requirement, see RUBRICS.md §4.
 `status`: supported / partially_supported / disputed / unsupported.
 
 Rebuild this from the drafted text after drafting — drafting invents claims.
@@ -154,7 +154,51 @@ Where the thesis does not hold. What the evidence has not settled.
 Return to the opening tension. State the broader implication. Do not summarize.
 ```
 
-## 8. Series manifest
+## 8. Structure library
+
+The skeleton in §7 is the default, not the only shape. Pick by the job the argument has to do.
+
+| Format | Skeleton |
+|---|---|
+| Contrarian insight | conventional belief → anomaly → new thesis → mechanism → evidence → implications |
+| Data-led analysis | finding → why it matters → method → drivers → alternative explanations → decisions |
+| Executive playbook | decision → why the current process fails → principles → steps → examples → failure modes |
+| Case-led | case → puzzle → diagnosis → generalized lesson → comparison → application |
+| Explainer | question → answer → mechanism → evidence → misconceptions → implications |
+| Opinion with evidence | thesis → stakes → evidence → strongest objection → response → recommendation |
+| Trend analysis | what changed → magnitude → structural vs temporary drivers → winners and losers → indicators to watch |
+| Series installment | minimal recap → new question → new insight → evidence → link to series → next question |
+
+Every one of them still carries **claim → evidence → warrant → implication** inside its sections. A section that presents evidence without saying why it matters, or recommends without showing the mechanism, is defective in any format.
+
+## 9. Reverse-outline pass
+
+Run after drafting, before any line editing. Label every paragraph with a five-to-twelve-word description of the job it does, then interrogate the labels — not the prose. This exposes the actual argument skeleton, which is why it works where "make it flow better" does not.
+
+```
+Does every paragraph do exactly one useful job?
+Does paragraph N create the need for paragraph N+1?
+Does every section advance the thesis?
+Does any section merely repeat an earlier one?
+Does the conclusion introduce new substantive evidence?
+Does each example actually prove the claim it is attached to?
+Does every heading mark a distinct argumentative step?
+```
+
+Then apply the transformation the diagnosis calls for:
+
+| Diagnosis | Transformation |
+|---|---|
+| Duplicate idea | Delete or consolidate |
+| Orphan fact | State its implication, or remove it |
+| Weak transition | Expose the causal or logical relation |
+| Two concepts in one paragraph | Split |
+| One concept across three paragraphs | Compress |
+| Background before the hook | Move the background later |
+| Recommendation before mechanism | Establish mechanism and evidence first |
+| Tangent | Move to a note or sidebar, or cut |
+
+## 10. Series manifest
 
 ```markdown
 # Series: {{title}}
@@ -177,7 +221,7 @@ Reader action:       {{what they can do after this part alone}}
 
 The anti-repetition list is not optional. Without it each installment re-establishes the series premise and the set reads as variations on one article.
 
-## 9. Revision log
+## 11. Revision log
 
 ```markdown
 | rev | trigger | pass | sections changed | effect |
@@ -187,3 +231,57 @@ The anti-repetition list is not optional. Without it each installment re-establi
 ```
 
 Record what changed and why. When revising, report both a text diff and a **semantic diff**: which claims changed, which evidence changed, whether confidence moved, and whether any qualification disappeared. A style pass that quietly deletes a hedge is an evidence regression, and only the semantic diff catches it.
+
+## 12. Publish packet
+
+Deliver this, not a bare article.
+
+```yaml
+publish_packet:
+  article:
+  title_primary:
+  title_alternatives:      # scored per RUBRICS.md §8
+  dek:
+  executive_summary:
+  author_byline:
+  article_date:
+  last_fact_checked:
+  locale:
+  depth_class:
+
+  meta_title:
+  meta_description:
+  canonical_slug:
+  internal_link_suggestions:
+  image_brief:
+  image_alt_text:
+
+  source_ledger:
+  claim_ledger:
+  unresolved_items:        # every [SOURCE NEEDED] / [VERIFY] still open
+  similarity_review:
+  editorial_scores:
+  human_approvals:         # named person, not a checkbox
+```
+
+`human_approvals` is a name. A packet without one is `ready_for_review`, never `approved`.
+
+## 13. Corrections and freshness
+
+Serious publishing corrects in public. Keep a record per article.
+
+```yaml
+article_history:
+  published_at:
+  research_ledger_version:
+  last_checked_at:
+  next_check_due:          # set for volatile content
+  corrections:
+    - date:
+      original:
+      corrected:
+      reason:
+      material: true       # material errors are disclosed, not silently edited
+```
+
+Schedule re-checks for articles carrying volatile content — statistics, regulation, prices, appointments, market conditions. Re-check means re-verify the claims; changing the displayed date without substantive change is a freshness claim the article has not earned.

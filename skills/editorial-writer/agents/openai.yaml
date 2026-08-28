@@ -1,7 +1,7 @@
 interface:
   display_name: Editorial Writer
-  short_description: Research, architect, draft, and audit publication-grade long-form
-    articles and series
+  short_description: Research, architect, draft, audit, and localize publication-grade
+    long-form articles and series (en + ar-SA/GCC)
   default_prompt: Use $editorial-writer to turn my brief into an argument architecture
     and evidence ledger before drafting.
 policy:
