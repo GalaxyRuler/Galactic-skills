@@ -1,6 +1,6 @@
 ---
 name: meta-prompt-engineering
-description: Use when designing, auditing, refactoring, or evaluating a persistent instruction layer for an LLM system — agent/system/developer prompts, orchestrator and router prompts, tool-use policies, subagent delegation templates, planner/verifier/judge prompts, error-recovery prompts, output contracts, or a prompt that generates or repairs other prompts. Also use when an agent loops, picks wrong tools, invents capabilities, stops too early, leaks internal deliberation, obeys instructions found in retrieved content, or regresses after a model upgrade. Triggers on system prompt, meta-prompt, agent prompt, instruction hierarchy, prompt injection, prompt bloat, prompt regression, LLM-as-judge, delegation prompt, prompt eval.
+description: Use when writing, auditing, refactoring, or evaluating any prompt that will be reused — a single copy-ready prompt for a target model (ChatGPT, Claude, Gemini, Perplexity, Llama, Grok, Copilot, image/video models), or a persistent instruction layer for an LLM system (agent/system/developer prompts, orchestrator and router prompts, tool-use policies, subagent delegation templates, planner/verifier/judge prompts, error-recovery prompts, output contracts, or a prompt that generates or repairs other prompts). Also use when an agent loops, picks wrong tools, invents capabilities, stops too early, leaks internal deliberation, obeys instructions found in retrieved content, or regresses after a model upgrade. Triggers on write a prompt, optimize this prompt, system prompt, meta-prompt, agent prompt, instruction hierarchy, prompt injection, prompt bloat, prompt regression, LLM-as-judge, delegation prompt, prompt eval, and on "what should I tell ChatGPT to…" / "I need Claude to…" phrasings.
 ---
 
 # Meta-prompt engineering
@@ -11,28 +11,23 @@ A **meta-prompt** is any reusable instruction layer that governs *how* a model i
 
 **Core principle: a meta-prompt is a small executable specification for probabilistic software, not a persona description.** Write it like a versioned API contract with tests. The target is not the cleverest prompt — it is *the shortest maintainable instruction contract that holds across normal, edge, adversarial, long-context, tool-error, and model-upgrade conditions.*
 
-## When to use
+## Two modes
 
-- Writing or refactoring a system/orchestrator prompt for an agent that will run unattended
-- An agent misbehaves in a *structural* way: loops, wrong or excessive tool calls, hallucinated capabilities, premature "done", leaked internal chatter, schema drift, injection compliance
-- Splitting one overloaded mega-prompt into planner / executor / verifier / judge
-- Building the eval harness that decides whether a prompt change ships
-- Designing subagent delegation, handoffs, or a judge rubric
+Same discipline, two output shapes. Pick by **who loads the result**.
 
-**Not for:** writing a single copy-ready prompt for a human to paste into a chat UI — that is a task-prompt job. Hand off when the deliverable is one prompt, not a system.
+| | **Single-prompt mode** | **Contract mode** |
+|---|---|---|
+| Deliverable | One copy-ready prompt | A persistent instruction layer |
+| Loaded by | A human, pasting it once | A harness, every run |
+| Sized by | The task | A defended token budget |
+| Verified by | A pre-delivery checklist | A regression suite on held-out cases |
+| Read | *Single-prompt mode* below + `references/MODEL-ADAPTATION.md` | Everything else here |
 
-## Layers — keep these distinct
+Contract mode applies when: refactoring a system/orchestrator prompt for an unattended agent; an agent misbehaves *structurally* (loops, wrong or excessive tool calls, hallucinated capabilities, premature "done", leaked chatter, schema drift, injection compliance); splitting a mega-prompt into planner / executor / verifier / judge; designing delegation, handoffs, or a judge rubric; building the eval harness that decides what ships.
 
-| Layer | Job |
-|---|---|
-| Task input | What the user wants now |
-| Context | Facts and data for that task (documents, retrieval, rows) |
-| Meta-prompt | How the model behaves across tasks |
-| Orchestration meta-prompt | Decomposition, delegation, verification, synthesis |
-| Evaluation meta-prompt | Judges another model or agent |
-| Optimizer meta-prompt | Produces or repairs prompts |
+When a single prompt starts running unattended — scheduled, looped, or wired into an agent — it has become a contract. Switch modes rather than growing the one-shot prompt.
 
-The highest-leverage fix is often *context architecture* — which tools, memories, schemas, and subagent results land in the window — not another paragraph of prose.
+Keep the layers distinct — task input, context, meta-prompt, orchestration, evaluation, optimizer (`references/ARCHITECTURE.md` §0). The highest-leverage fix is often *context architecture* — which tools, memories, schemas, and subagent results land in the window — not another paragraph of prose.
 
 ## The spine
 
@@ -43,6 +38,35 @@ identity → instruction_hierarchy → scope/authority → runtime (tools, state
 → operating_policy → tool_policy → output_contract → failure_policy
 → completion_criteria → examples → dynamic_context (trust="untrusted")
 ```
+
+## Single-prompt mode
+
+Deliver the prompt, not advice about prompts. The same spine applies, compressed to what the task
+needs — a two-line prompt with a clear objective beats a six-section template around a simple ask.
+
+1. **Identify the target model.** It changes the output shape. Ask if unstated; read
+   `references/MODEL-ADAPTATION.md` for what differs.
+2. **Diagnose the rough request** for the defects that actually cause vague output: ambiguous
+   objective, missing context, unclear format, no success criteria, conflicting requirements,
+   under-specified audience.
+3. **Ask only questions that change the prompt.** Cap at five. If only minor details are missing,
+   assume, proceed, and list the assumptions — do not interrogate.
+4. **Build** with role, context, task, constraints, output format, and success criteria. Add
+   examples only when format matters; too many overfit the output to the demonstrations.
+5. **Deliver** the copy-ready prompt first, then a short "what changed" and the assumptions used.
+   For API targets, split System / Developer / User only when that model supports the roles. For
+   reusable templates, use `{placeholders}` and define each one.
+
+Three rules that are not optional:
+
+- **Never request hidden chain-of-thought.** Use "state assumptions and uncertainties", "check your
+  answer against the criteria before responding", or "show key reasoning at a high level."
+- **Never claim a capability the target may not have** — browsing, tools, files, memory. Unclear
+  means say it is unclear.
+- **Never leave `[fill this in]`** unless the placeholder is deliberate and explained.
+
+For legal, medical, financial, or safety-critical tasks, build verification and expert-consultation
+language into the prompt itself.
 
 ## Hard rules
 
@@ -89,6 +113,7 @@ There is no universal optimum. Set a budget and defend it: instruction-following
 
 ## References
 
+- `references/MODEL-ADAPTATION.md` — per-model differences that change what you write (GPT, Claude, Gemini, search-enabled, open weights, coding assistants, image/audio/video), plus a staleness warning
 - `references/ARCHITECTURE.md` — spine, trust model, phase separation, rule-writing standard, budget policy, control-loop patterns from production agent systems
 - `references/TEMPLATES.md` — orchestrator, tool executor, multi-agent coordinator, injection-resistant analyst, recovery, judge, and prompt-optimizer meta-prompts
 - `references/FAILURE-MODES.md` — fifteen structural failure modes with root cause, diagnosis signal, and correction

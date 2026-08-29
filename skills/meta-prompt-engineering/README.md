@@ -1,11 +1,18 @@
 # Meta-Prompt Engineering
 
-Treat an agent's instruction layer as a small executable specification for probabilistic software —
-a versioned contract with a trust model, a runtime contract, machine-verifiable stop conditions, a
-token budget, and tests — instead of a persona paragraph that grows a clause after every bug.
+Write the prompt someone actually needs — one copy-ready prompt for a target model, or a persistent
+instruction layer treated as a small executable specification for probabilistic software: a
+versioned contract with a trust model, machine-verifiable stop conditions, a token budget, and
+tests, instead of a persona paragraph that grows a clause after every bug.
 
 ## What it does
 
+- Runs in **two modes**, picked by who loads the result. *Single-prompt mode* delivers one
+  copy-ready prompt for a target model — diagnose the rough request, ask at most five questions
+  that would actually change the output, deliver the prompt plus its assumptions, never request
+  hidden chain-of-thought or claim a capability the target may not have. *Contract mode* delivers a
+  persistent instruction layer with everything below. A one-shot prompt that starts running
+  unattended has become a contract — switch modes instead of growing the prompt
 - Defines the **layered orchestration contract** that replaces a monolithic "be a smart helpful
   agent" prompt: mission → instruction hierarchy → scope/authority → runtime and tool contract →
   operating loop → output contract → failure policy → stop conditions → evaluation hooks
@@ -34,20 +41,21 @@ token budget, and tests — instead of a persona paragraph that grows a clause a
 
 ## When to use
 
-Writing or refactoring a system/orchestrator prompt for an unattended agent; diagnosing structural
-misbehavior (loops, wrong or excessive tool calls, invented capabilities, premature "done", leaked
-internal deliberation, schema drift, obeying instructions found in retrieved content); splitting an
-overloaded mega-prompt into planner / executor / verifier / judge; designing delegation, handoffs,
-or a judge rubric; building the eval harness that decides whether a prompt change ships; or
-recovering from a regression after a model upgrade.
-
-**Not for** writing a single copy-ready prompt to paste into a chat UI — that is a task-prompt job,
-not a system contract.
+Writing or optimizing a prompt for a specific model (ChatGPT, Claude, Gemini, Perplexity, Llama,
+Grok, Copilot, image/video models); writing or refactoring a system/orchestrator prompt for an
+unattended agent; diagnosing structural misbehavior (loops, wrong or excessive tool calls, invented
+capabilities, premature "done", leaked internal deliberation, schema drift, obeying instructions
+found in retrieved content); splitting an overloaded mega-prompt into planner / executor / verifier
+/ judge; designing delegation, handoffs, or a judge rubric; building the eval harness that decides
+whether a prompt change ships; or recovering from a regression after a model upgrade.
 
 ## What's inside
 
-- [SKILL.md](SKILL.md) — layer taxonomy, the spine, ten hard rules, enforcement-placement table,
-  the eval-first workflow, and the token-budget policy
+- [SKILL.md](SKILL.md) — the two modes, single-prompt procedure, the spine, ten hard rules,
+  enforcement-placement table, the eval-first workflow, and the token-budget policy
+- [references/MODEL-ADAPTATION.md](references/MODEL-ADAPTATION.md) — only the per-model differences
+  that change what you write, routing table first, with an explicit warning that this is the
+  fastest-ageing file in the skill and must be checked against current vendor guidance
 - [references/ARCHITECTURE.md](references/ARCHITECTURE.md) — section-by-section contract with each
   section's common defect, trust model, phase-separation patterns from production agent systems,
   control-loop shape, rule-writing standard with metadata sidecar, budget table and CI checks,

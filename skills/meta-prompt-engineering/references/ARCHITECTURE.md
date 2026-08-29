@@ -1,5 +1,21 @@
 # Meta-prompt architecture
 
+## 0. Layers — keep these distinct
+
+| Layer | Job |
+|---|---|
+| Task input | What the user wants now |
+| Context | Facts and data for that task (documents, retrieval, rows) |
+| Meta-prompt | How the model behaves across tasks |
+| Orchestration meta-prompt | Decomposition, delegation, verification, synthesis |
+| Evaluation meta-prompt | Judges another model or agent |
+| Optimizer meta-prompt | Produces or repairs prompts |
+
+Confusing two of these is the most common structural mistake. A rule that belongs in the context
+layer (which documents get retrieved) written as a meta-prompt clause ("consider all relevant
+documents") is unenforceable; a rule that belongs in the meta-prompt written as task input has to
+be repeated every turn and drifts.
+
 ## 1. The layered orchestration contract
 
 Replace any monolithic "be a smart helpful agent" prompt with an ordered contract:
