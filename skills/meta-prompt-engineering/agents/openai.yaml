@@ -1,0 +1,13 @@
+interface:
+  display_name: Meta-Prompt Engineering
+  short_description: Design, audit, and evaluate agent instruction layers as testable contracts
+  default_prompt: Use $meta-prompt-engineering to audit my agent's system prompt — trust
+    hierarchy, runtime sync, stop conditions, token budget — and tell me what belongs in
+    code instead of prose.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
