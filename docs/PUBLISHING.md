@@ -27,7 +27,7 @@ Every skill in this repo goes through a publish pipeline before landing on `main
 ```
 skills/<skill-name>/
 ├── README.md          # human-facing landing page (required)
-├── SKILL.md           # main instructions (required, <100 lines)
+├── SKILL.md           # main instructions (required, ~100 lines)
 ├── agents/
 │   └── openai.yaml    # Codex manifest (required)
 ├── REFERENCE.md       # optional deep-dive docs
@@ -37,7 +37,7 @@ skills/<skill-name>/
 ## Quality bar
 
 - `description:` frontmatter states what the skill does and when to trigger it ("Use when...")
-- SKILL.md stays under ~100 lines; detail goes in reference files, one level deep
+- SKILL.md stays under ~100 lines; detail goes in reference files, one level deep. A skill with two distinct operating modes may reach ~120 — but only after every lookup table and per-item detail already lives in `references/`. Length is never the reason to keep a table in SKILL.md
 - Every skill folder has a `README.md` (what it does, when to use, what's inside, install) — kept in sync when modules change
 - No time-sensitive info
 - Concrete examples included

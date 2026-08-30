@@ -83,16 +83,11 @@ language into the prompt itself.
 
 ## Enforcement placement
 
-| Requirement | Strongest enforcement |
-|---|---|
-| Output parses as JSON | Structured output / schema validation |
-| Agent may not call `delete` | Tool permission layer |
-| Stop after N attempts | Orchestrator counter |
-| No identical failed retry | State machine / dedup on `(goal, action, result)` |
-| Budget not exceeded | Runtime budget controller |
-| Retrieved text is untrusted | Context labeling + sandbox + prompt |
-| Claims are cited | Prompt + citation validator |
-| Be concise | Prompt (genuinely prompt-only) |
+Before writing a rule, ask where it is *strongest*. Schema validation, permission layers,
+orchestrator counters, dedup state machines, and budget controllers each guarantee what a prompt
+can only encourage — and once they do, the prompt clause is deleted, not duplicated. Genuinely
+prompt-only requirements are the soft ones: tone, concision, how to phrase uncertainty. Full
+placement table in `references/ARCHITECTURE.md` §5a.
 
 ## Workflow — eval-first, never prompt-first
 

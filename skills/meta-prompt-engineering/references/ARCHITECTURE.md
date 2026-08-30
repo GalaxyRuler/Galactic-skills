@@ -153,6 +153,27 @@ Rule metadata to keep alongside the prompt (a YAML sidecar is enough):
   tokens: 58
 ```
 
+## 5a. Enforcement placement
+
+Every requirement has exactly one *strongest* enforcement point. Find it before writing a clause;
+once a deterministic control owns the requirement, delete the clause rather than duplicating it.
+
+| Requirement | Strongest enforcement |
+|---|---|
+| Output parses as JSON | Structured output / schema validation |
+| Agent may not call `delete` | Tool permission layer |
+| Stop after N attempts | Orchestrator counter |
+| No identical failed retry | State machine / dedup on `(goal, action, result)` |
+| Budget not exceeded | Runtime budget controller |
+| Retrieved text is untrusted | Context labeling + sandbox + prompt |
+| Claims are cited | Prompt + citation validator |
+| Use the authoritative data tool rather than estimating | Tool routing policy + prompt |
+| Ask for clarification only when required | Prompt + ambiguity evaluation |
+| Be concise | Prompt (genuinely prompt-only) |
+
+Rows with two mechanisms are the honest cases: the deterministic half enforces, the prompt half
+explains the intent so the model cooperates instead of fighting the guard.
+
 ## 6. Budget policy
 
 No research supports a universal token optimum. Use an empirical budget instead. A starting
