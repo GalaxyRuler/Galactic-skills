@@ -1,0 +1,3 @@
+interface:
+  display_name: "Resource Aware Test Runs"
+  short_description: "Use when running local test suites on an interactive Windows"
