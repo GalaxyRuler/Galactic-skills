@@ -1,6 +1,6 @@
 ---
 name: rust-engineering
-description: Production-grade Rust engineering guidelines — ownership, type-driven design, error handling, async/concurrency, testing, security, and performance. Use when writing new Rust applications, designing Rust architecture, refactoring Rust code, implementing async/concurrency, integrating databases (SQLx/SeaORM/Diesel), configuring Rust CI/CD pipelines, building with axum/actix-web/Tauri/WASM, or performing Rust code reviews. Also triggers on Cargo.toml, .rs files, or mentions of borrow checker, lifetimes, or traits.
+description: Use when writing new Rust applications, designing Rust architecture, refactoring Rust code, implementing async/concurrency, integrating databases (SQLx/SeaORM/Diesel), configuring Rust CI/CD pipelines, building with axum/actix-web/Tauri/WASM, or performing Rust code reviews — production-grade Rust engineering guidelines covering ownership, type-driven design, error handling, async/concurrency, testing, security, and performance. Also triggers on Cargo.toml, .rs files, or mentions of borrow checker, lifetimes, or traits.
 ---
 
 # Rust Engineering
