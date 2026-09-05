@@ -1,0 +1,3 @@
+interface:
+  display_name: "Running Paid API Jobs"
+  short_description: "Use when the user authorizes a paid API, model, benchmark"
