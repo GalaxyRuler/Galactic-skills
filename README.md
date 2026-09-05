@@ -61,6 +61,7 @@ Copy-Item -Recurse skills\<skill-name> "$env:USERPROFILE\.codex\skills\"    # Co
 | [test-ux](skills/test-ux) | Stack-agnostic UX testing — Nielsen heuristic evaluation, task-based cognitive walkthroughs, journey/state analysis, content/i18n comprehension, real-user test-plan generator |
 | [ux-engineering](skills/ux-engineering) | UX engineering and product design — JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, HEART/SUS metrics |
 | [verify-live-deploy](skills/verify-live-deploy) | Stops "done" before production actually serves the new code — merged/deployed/live-verified reported as three separate states, cache-defeating liveness proof against the real production URL, desktop installed-copy checks, and the failure modes that fake a successful ship |
+| [windows-remote-bootstrap](skills/windows-remote-bootstrap) | Prepare, transfer, run, and troubleshoot Windows scripts over SSH/WinRM/Taildrop/scheduled tasks/VM consoles — payload freshness proof, nested-quote and command-line-length traps, PowerShell 5.1 portability, an interactive-desktop lane with real foreground assertions, and a VM app-acceptance pattern with port and process-tree cleanup |
 
 ## How skills get here
 

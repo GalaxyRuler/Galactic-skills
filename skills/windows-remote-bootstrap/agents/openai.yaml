@@ -1,0 +1,3 @@
+interface:
+  display_name: "Windows Remote Bootstrap"
+  short_description: "Prepare, transfer, run, and troubleshoot Windows bootstrap or"
