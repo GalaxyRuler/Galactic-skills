@@ -1,6 +1,6 @@
 ---
 name: tauri-engineering
-description: Production-grade Tauri v2 engineering guidelines — guest-host architecture, IPC commands, state management, ACL security, plugins, testing, performance optimization, auto-updates, and CI/CD. Use when building Tauri desktop or mobile apps, configuring tauri.conf.json, writing Tauri commands/plugins, setting up Tauri permissions/capabilities, debugging Webview issues, optimizing Tauri binary size, configuring Tauri auto-updates, or reviewing Tauri code. Also triggers on tauri.conf.json, tauri-plugin-*, or mentions of WRY/TAO/Webview2/WebKitGTK.
+description: Use when building Tauri desktop or mobile apps, configuring tauri.conf.json, writing Tauri commands/plugins, setting up Tauri permissions/capabilities, debugging Webview issues, optimizing Tauri binary size, configuring Tauri auto-updates, or reviewing Tauri code — production-grade Tauri v2 engineering guidelines covering guest-host architecture, IPC commands, state management, ACL security, plugins, testing, performance optimization, auto-updates, and CI/CD. Also triggers on tauri.conf.json, tauri-plugin-*, or mentions of WRY/TAO/Webview2/WebKitGTK.
 ---
 
 # Tauri Engineering
