@@ -60,6 +60,7 @@ Copy-Item -Recurse skills\<skill-name> "$env:USERPROFILE\.codex\skills\"    # Co
 | [test-ui](skills/test-ui) | Stack-agnostic UI testing — visual regression, responsive + cross-browser, WCAG 2.2 AA accessibility, component/state matrix, i18n/locale-integrity, design-token fidelity |
 | [test-ux](skills/test-ux) | Stack-agnostic UX testing — Nielsen heuristic evaluation, task-based cognitive walkthroughs, journey/state analysis, content/i18n comprehension, real-user test-plan generator |
 | [ux-engineering](skills/ux-engineering) | UX engineering and product design — JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, HEART/SUS metrics |
+| [verify-live-deploy](skills/verify-live-deploy) | Stops "done" before production actually serves the new code — merged/deployed/live-verified reported as three separate states, cache-defeating liveness proof against the real production URL, desktop installed-copy checks, and the failure modes that fake a successful ship |
 
 ## How skills get here
 
