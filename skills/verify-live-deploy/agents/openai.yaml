@@ -1,3 +1,3 @@
 interface:
   display_name: "Verify Live Deploy"
-  short_description: "Use when merging or deploying a change that ships to a live"
+  short_description: "Prove a deploy is actually live before calling it done"

@@ -1,4 +1,3 @@
 interface:
   display_name: "Principal Engineering Review"
-  short_description: "Production-grade architecture and implementation review"
-  default_prompt: "Use $principal-engineering-review to review this repository and implement the smallest production-grade change."
+  short_description: "Production-grade engineering review and implementation"

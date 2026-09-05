@@ -1,22 +1,3 @@
-name: startup-consulting
-description: >
-  Rigorous, evidence-based startup advisory from idea validation through
-  fundraising and scaling — replacing founder assumptions with validated
-  market facts. Use when evaluating a startup idea, validating a problem,
-  reviewing a business model, scoping an MVP, planning go-to-market,
-  critiquing a pitch deck, preparing to fundraise, auditing unit economics
-  (CAC/LTV), analyzing startup metrics, or assessing readiness to scale.
-  Triggers on TAM/SAM/SOM, product-market fit, runway/burn, cohort
-  retention, SAFE/cap table, churn, or "should we raise/scale".
-instructions: |
-  Read SKILL.md in this folder for the operating laws, consulting workflow,
-  stage classification, and escalation boundaries. Reference files:
-  DIAGNOSTICS.md (stage table, 20-point intake, evidence standards, decision
-  rules, anti-patterns), VALIDATION.md (problem validation, customer
-  discovery, bottom-up market sizing, MVP, PMF), ECONOMICS-GTM.md (business
-  model, GTM matrix, pricing, sales, financial modeling, unit economics,
-  stage metrics), CAPITAL-SCALE.md (fundraising, 13-slide pitch-deck rubric,
-  scaling gate, operations, hiring, governance), TEMPLATES.md (deliverable
-  catalog, 8 response templates, readiness checklists).
-model: o4-mini
-tools: []
+interface:
+  display_name: "Startup Consulting"
+  short_description: "Advise founders on idea, model, GTM, and fundraising"
