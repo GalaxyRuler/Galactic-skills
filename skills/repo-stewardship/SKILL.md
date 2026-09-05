@@ -1,6 +1,6 @@
 ---
 name: repo-stewardship
-description: Safely acquire, inspect, sync, validate, and prepare Git repositories for review or delivery — with permission tiers, quality gates, changelog/SemVer discipline, and PR readiness reports. Use when cloning/forking repos, syncing feature branches with trunk, resolving merge conflicts, cleaning stale branches, setting up CI gates or pre-commit hooks, triaging CI failures, preparing changelogs/release notes/SemVer bumps, or making a repo "AI-agent ready".
+description: Use when cloning/forking repos, syncing feature branches with trunk, resolving merge conflicts, cleaning stale branches, setting up CI gates or pre-commit hooks, triaging CI failures, preparing changelogs/release notes/SemVer bumps, or making a repo "AI-agent ready" — safely acquire, inspect, sync, validate, and prepare Git repositories for review or delivery, with permission tiers, quality gates, changelog/SemVer discipline, and PR readiness reports.
 ---
 
 # Repository Stewardship
