@@ -8,12 +8,16 @@ context, constraints, output format, stated assumptions — are assumed and not 
 > before asserting a capability, especially anything about tools, roles, context length, or
 > reasoning behavior — see the `research-grounding` skill. Prompting remains empirical and
 > model-specific; vendors say so themselves.
+>
+> Last checked against vendor documentation: **2026-09-05**. Anything below that a vendor page now
+> contradicts is wrong, not merely old — re-read the page before quoting this file.
 
 ## Quick routing
 
 | Target | The one thing that matters most |
 |---|---|
-| GPT-4.1 / GPT-5 / o-series | Heading-structured sections; explicit output schema; do not instruct reasoning models *how* to think |
+| GPT-6 Astra | Prompt the *behaviors*, not the task: autonomy, skill-precedence, prose style, delegation, test scope |
+| GPT-4.1 / GPT-5.x / o-series | Heading-structured sections; explicit output schema; do not instruct reasoning models *how* to think |
 | Claude | XML-ish tags; rich context; rubric + "analyze first, show only the requested output" |
 | Gemini | Explicit comparison dimensions; state which modality the output should be |
 | Perplexity / search-enabled | Required source types, recency window, and what must *not* be a source |
@@ -25,7 +29,52 @@ context, constraints, output format, stated assumptions — are assumed and not 
 
 ---
 
-## GPT family (OpenAI)
+## GPT-6 Astra (OpenAI)
+
+Astra inverts the usual advice. Earlier models needed the *task* specified more sharply; Astra
+follows instructions well enough that the leverage moves to specifying **behavior** — how autonomous
+to be, whose instructions win, how much to test, how to write. OpenAI's own guidance names five
+behaviors, each with the failure it causes when left unspecified.
+
+| Behavior | Left unspecified, it… | Prompt the opposite |
+|---|---|---|
+| Initiative / follow-through | Asks a question where you wanted action | "bias towards action and carry the user's intended task to completion"; treat "can you…" / "I want to…" as instructions, not proposals; finish authorized work *before* asking for approval, so the user approves a concrete reviewable result |
+| Instruction following | Pauses or diverges because a skill file said something | "The user's instructions take precedence over guidelines provided in a skill"; and when a skill does cause a pause, require it to name the exact `SKILL.md`, quote the instruction, and separate explicit requirements from its own interpretation |
+| Personality / writing style | Defaults to lists, tables, jargon, stock phrases | "clear, concise paragraphs, each developing one main idea"; lists only when genuinely parallel or sequential; ban the slop list — "Bottom Line:", "delve", "leverage", "it's worth noting", "In short:", and contrastive "X, not Y" framing that introduces an alternative nobody asked about |
+| Subagent delegation | Delegates less than a parallel workflow wants | "If at any point you can parallelize work by delegating tasks to another agent … you should do so"; add a legibility rule, since inter-agent messages reach humans |
+| Testing / verification | Over-tests small reversible changes | "Do not write tests for reversible, low-impact changes that mirror the implementation"; stop once required checks pass unless new failures justify more |
+
+Also worth prompting away explicitly: unsolicited warnings, disclaimers, approval flows, and
+hypothetical risk checklists.
+
+**Audit your skill files.** OpenAI strongly recommends reviewing skills and `AGENTS.md`-style files
+for instructions that could steer the model, precisely because Astra follows them more faithfully
+than its predecessors. That is this skill's hard rule 1 arriving as vendor guidance: a stronger
+instruction-follower makes an unaudited instruction layer more dangerous, not less. Run the
+`FAILURE-MODES.md` triage over every file the model loads before blaming the model.
+
+API notes that change how prompts are packaged, not just worded:
+
+- Model id `gpt-6-astra`, via the Responses API. Chat Completions works, but **tool calling requires
+  Responses**.
+- **Reasoning effort:** `none` is unsupported. Migrating from `none`/`minimal`, start at `low` and
+  compare; otherwise preserve the effective level. `reasoning.effort` (Responses) /
+  `reasoning_effort` (Chat Completions).
+- **Change effort mid-conversation** with a `configuration_update` input item instead of rewriting
+  the request — the prompt prefix stays intact, so the cache survives. Keep request-level
+  `reasoning.effort` unchanged.
+- **Remove** `temperature`, `top_p`, `top_logprobs` (plus `logprobs` on Chat Completions, and
+  `message.output_text.logprobs` from `include` on Responses).
+- **Prompt caching:** from GPT-5.5 or earlier, `prompt_cache_retention` → `prompt_cache_options.ttl`
+  set to `"30m"`.
+- **Async tool calling** (`async: true`, resolve by original `call_id`) lets the model keep reasoning
+  while your application runs a tool — relevant to the executor loop in `TEMPLATES.md` §2, where
+  CHECK no longer has to block.
+- **Mid-turn steering** over a WebSocket delivers a correction into a run in progress while
+  preserving completed work. A recovery prompt can now arrive *during* the turn, not only after it.
+- Fast mode (`service_tier: "fast"` / `"priority"`) is unavailable with EU data residency.
+
+## GPT-4.1 / GPT-5.x / o-series
 
 - Structure with headings: `## Role`, `## Task`, `## Output`, `## Constraints`.
 - Specify output shape explicitly — JSON, table, markdown, schema.
