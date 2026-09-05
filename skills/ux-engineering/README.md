@@ -12,7 +12,7 @@ Authoritative, empirical, standards-based methodology for architecting, designin
 
 ## When to use
 
-Designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques.
+Designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques. For test execution use the companion runners: [test-ui](../test-ui) for visual/responsive/a11y automation and [test-ux](../test-ux) for heuristic evaluation, walkthroughs, and SUS.
 
 ## What's inside
 

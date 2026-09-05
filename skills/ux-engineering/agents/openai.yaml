@@ -1,14 +1,3 @@
-name: ux-engineering
-description: >
-  UX engineering and product design — JTBD research, information architecture,
-  WCAG 2.2 AA accessibility, design systems, interaction design, and
-  measurement (HEART/SUS). Use when designing user interfaces, conducting UX
-  research, building design systems, reviewing accessibility compliance,
-  planning usability testing, defining product metrics, writing JTBD
-  statements, structuring information architecture, auditing contrast/target
-  sizes, or evaluating design critiques.
-instructions: |
-  Read SKILL.md in this folder for the full operational guidelines.
-  Reference files: TESTING-METRICS.md (checklists, testing methods, HEART/SUS).
-model: o4-mini
-tools: []
+interface:
+  display_name: "UX Engineering"
+  short_description: "Use when designing user interfaces, conducting UX research"

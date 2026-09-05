@@ -1,11 +1,13 @@
 ---
 name: ux-engineering
-description: UX engineering and product design — JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, and measurement (HEART/SUS). Use when designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques.
+description: Use when designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques — UX engineering and product design methodology: JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, and measurement (HEART/SUS).
 ---
 
 # UX Engineering & Product Design
 
 Authoritative, empirical, and standards-based methodology for architecting, designing, testing, and deploying digital experiences.
+
+For UI testing execution (visual regression, responsive, a11y automation), use [test-ui](../test-ui/SKILL.md). For UX testing execution (heuristic eval, cognitive walkthroughs, SUS), use [test-ux](../test-ux/SKILL.md). This skill is the strategic methodology layer that informs those testing runners.
 
 ## Operational workflow
 
@@ -13,7 +15,7 @@ Authoritative, empirical, and standards-based methodology for architecting, desi
 2. **Information architecture** — organize via the three circles (Users, Content, Context). Build organization, labeling, navigation, and search systems.
 3. **Design & prototyping** — build from foundational design tokens. Map UI components to semantic roles. Apply ISO 9241-110 dialogue principles.
 4. **Accessibility integration** — WCAG 2.2 AA via progressive enhancement on all structures.
-5. **Testing & iteration** — validate flows via qualitative usability testing with representative users.
+5. **Testing & iteration** — validate flows via qualitative usability testing with representative users. Execute with `/test-ui` and `/test-ux` skills.
 6. **Measurement & optimization** — track quality with HEART framework and System Usability Scale (SUS).
 
 ## JTBD research
