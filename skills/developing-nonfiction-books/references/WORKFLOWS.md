@@ -92,7 +92,7 @@ Use confidence labels in working records:
 - **Cases and personal stories:** record whether details are observed, documented, reported, remembered, reconstructed, or inferred; preserve consent, anonymity, corroboration, and disclosure needs. Never invent dialogue, thought, sensory detail, chronology, or a composite presented as literal fact.
 - **Conflicting evidence:** describe the disagreement, assess source and method differences, and calibrate the conclusion. Do not average away a meaningful conflict.
 
-For every publication-critical claim, the claim ledger must show exact wording, class, source and locator, support level, limitations, counterevidence, permissions or risk, owner, status, and last check. Use the forms in [TEMPLATES.md](references/TEMPLATES.md).
+For every publication-critical claim, the claim ledger must show exact wording, class, source and locator, support level, limitations, counterevidence, permissions or risk, owner, status, and last check. Use the forms in [TEMPLATES.md](TEMPLATES.md).
 
 When evidence is missing, say what is unsupported and propose the safest next action: obtain a source, narrow the claim, attribute it, label it as interpretation, seek expert review, substitute a documented example, or remove it. Never fill the gap with plausible language.
 

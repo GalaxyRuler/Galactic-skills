@@ -18,8 +18,10 @@ Planning, researching, drafting, revising, fact-checking, or quality-assuring a 
 
 ## What's inside
 
-- [SKILL.md](SKILL.md) — core principles, intake and diagnosis, stage-workflow router, output formats, quality gates, ethics, completion standard
+- [SKILL.md](SKILL.md) — core principles and the stage router, with short summaries of intake, output formats, quality gates, ethics, and the completion standard, each linking to its reference
+- [references/INTAKE.md](references/INTAKE.md) — intake questionnaire and book-diagnosis tables
 - [references/WORKFLOWS.md](references/WORKFLOWS.md) — stage workflows: architecture, research/evidence ledger, drafting, revision modes, chapter collaboration
+- [references/GATES-AND-OUTPUTS.md](references/GATES-AND-OUTPUTS.md) — output formats, quality gates, ethics boundaries, completion standard
 - [references/REFERENCE.md](references/REFERENCE.md) — the 34-source evidence base behind the skill (university writing centers, publisher guidelines, journalism and statistics standards, editorial-stage standards, copyright and AI-authorship guidance)
 - [references/TEMPLATES.md](references/TEMPLATES.md) — copy-ready working forms: concept brief, positioning statement, annotated TOC, chapter contract, research plan, source card, claim ledger, revision memos, fact-check report, readiness report
 - `agents/openai.yaml` — Codex companion manifest
