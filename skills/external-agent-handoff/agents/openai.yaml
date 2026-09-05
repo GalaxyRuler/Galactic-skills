@@ -1,0 +1,3 @@
+interface:
+  display_name: "External Agent Handoff"
+  short_description: "Use when handing off work produced in this session to another"
