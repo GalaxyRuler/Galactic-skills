@@ -1,6 +1,6 @@
 ---
 name: powershell-safe-vars
-description: Use when writing or editing PowerShell commands or scripts, especially when variable names, shell quoting, heredocs, or path/string interpolation may fail.
+description: Use when writing or editing PowerShell commands or scripts, especially when variable names, shell quoting, heredocs, or path/string interpolation may fail, or when writing command blocks for the user to run manually on Windows.
 ---
 
 # PowerShell: Safe Variables, Quoting, and One-Liners
@@ -79,6 +79,7 @@ print("hello")
 - Also single-quote native glob flags such as `rg -g '*.ts'`; otherwise PowerShell can parse `[` as indexing or `*` as multiplication before the native command receives it.
 - Backslash does not escape a double quote in PowerShell. Use single quotes, or escape PowerShell double quotes with a backtick.
 - If a native command argument keeps being parsed by PowerShell, reduce the expression, single-quote it, or pass the pattern from a variable.
+- For `rg`, remember the default regex engine does not support look-around or backreferences. Use `--pcre2` only when those constructs are required; otherwise simplify the pattern, split it into multiple searches, or use `-F` for literal terms.
 
 10) Compute conditionals before interpolation
 - Do not use Bash-style `$((...))` in strings for command substitution or conditionals.
@@ -107,6 +108,33 @@ $rows = foreach ($item in $items) { [pscustomobject]@{ Name = $item.Name } }
 $rows | Format-Table -AutoSize
 ```
 
+13) Commands handed to the user must be complete copy-paste units
+- Any command block the user will run manually must work from a fresh terminal: include the `cd` to the correct working directory, required env vars, and the command — in one block, every time.
+- Never give a bare snippet that assumes the current directory or session env (e.g. `uv run python -m scripts.X` fails with `ModuleNotFoundError` outside the repo root; scripts printing Unicode need `$env:PYTHONIOENCODING = "utf-8"` first).
+
+```powershell
+cd C:\path\to\repo
+$env:PYTHONIOENCODING = "utf-8"
+uv run python -m scripts.run_thing --flag
+```
+
+14) Windows shell gotchas when writing commands for the user
+- `&&` and `||` work only in PowerShell 7+; Windows PowerShell 5.1 rejects them. Use `;` or separate lines unless pwsh 7 is confirmed — but note `;` does not short-circuit: gate with `if ($?) { ... }` or check `$LASTEXITCODE` when the second command must not run after a failure.
+- `%VAR%` does not expand in PowerShell — use `$env:VAR`.
+- Inline env-var prefixes (`NODE_ENV=production cmd`) are Bash-only — set `$env:NODE_ENV = 'production'` on its own line first.
+- Machine-scope `[Environment]::SetEnvironmentVariable(..., 'Machine')` and registry writes under HKLM need an elevated shell — say so, or use `'User'` scope.
+- Use `git <cmd> -h` for quick help; `git help <cmd>` tries to open a browser/man page on Windows.
+
+15) Avoid empty or accidental parameters when forwarding arguments
+- When a wrapper script forwards arrays to another command, remove empty strings and validate the final argv before invoking the child process.
+- PowerShell can interpret an empty or malformed forwarded parameter as an ambiguous parameter name, e.g. `Parameter name '' is ambiguous`.
+- Prefer explicit arrays and filter them:
+
+```powershell
+$cargoArgs = @($cargoArgs | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) })
+& $cargoExe @cargoArgs
+```
+
 ## Verification checklist
 
 - Script runs without `WriteError` / “Cannot overwrite variable …”.
@@ -117,8 +145,12 @@ $rows | Format-Table -AutoSize
 - External-process exit code fields are precomputed before object literals.
 - Here-string headers and terminators are on their own lines.
 - Regex/search/glob args containing pipes, embedded quotes, character classes, or wildcards are single-quoted, variable-backed, or PowerShell-escaped.
+- `rg` patterns that use look-around or backreferences are either run with `--pcre2` or rewritten for the default engine.
+- Forwarded argument arrays are checked for empty strings before being splatted into child commands.
 - Complex conditionals are computed before interpolation or object literals.
 - `foreach`/`if` statement output is assigned to a variable before piping.
+- Command blocks written for the user include `cd` + env vars + command as one copy-paste unit.
+- No `%VAR%` or inline `VAR=x cmd` prefixes in any PowerShell command; no `&&`/`||` unless pwsh 7+ is confirmed.
 
 ## Common failure modes
 
@@ -132,6 +164,11 @@ $rows | Format-Table -AutoSize
 - Reading `$process.ExitCode` before a launched process has exited, or embedding that read directly inside a result-object literal.
 - Writing regex arguments with `\"` inside PowerShell double-quoted strings; use single quotes or backtick-escaped quotes.
 - Running commands like `rg -n "foo[0-9]" . -g "*.ts"` and letting PowerShell parse `[` or `*`; use `rg -n 'foo[0-9]' . -g '*.ts'`.
+- Writing `rg` patterns with look-ahead/look-behind and forgetting `--pcre2`.
+- Passing empty strings through wrapper argument arrays and triggering ambiguous parameter errors.
 - Embedding Bash-style `$((if ...))` in strings; compute the value first.
 - Embedding `if (...) { ... }` directly inside a `[pscustomobject]@{}` value; compute the value first.
 - Piping directly from `foreach (...) { ... } | Format-Table`; assign the rows first.
+- Handing the user a module-relative command without the `cd` to the repo root, causing `ModuleNotFoundError` or path failures.
+- Using `&&` in a command the user pastes into Windows PowerShell 5.1.
+- Setting machine-scope env vars or HKLM keys from a non-elevated shell and getting access-denied errors.

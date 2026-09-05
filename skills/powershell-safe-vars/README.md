@@ -9,16 +9,18 @@ A catalog of PowerShell footguns that break AI-agent tool calls and one-liners �
 - Stops **Bash-habit mistakes**: heredocs (`<<'PY'`) don't exist in PowerShell — use a here-string piped to the command instead
 - Guards **null-handling**: `Get-Content -Raw` can return `$null`, so `.Trim()`/`.Substring()` on it throws — coerce to `[string]` first
 - Covers **native-command quoting**: single-quote regex/glob args containing `"`, `|`, `$`, `[`, `]`, `*`, or `?` so PowerShell's parser doesn't intercept them first
+- Covers **commands handed to the user**: every block is a complete copy-paste unit (cd + env vars + command), no `%VAR%`, no inline `VAR=x cmd`, no `&&` unless pwsh 7+ is confirmed, and elevated-shell warnings for machine-scope env vars or HKLM writes
+- Covers **`rg` regex engine limits** (`--pcre2` for look-around/backreferences) and **empty-argument forwarding** when wrapper scripts splat arrays into child commands
 - Covers **`$PSScriptRoot` in parameter defaults**, **process exit-code timing**, **conditionals inside object literals**, and **piping directly off `foreach`/`if`** — each with the safe rewrite
 - Ends with a verification checklist and a "common failure modes" table for fast self-review before running a script
 
 ## When to use
 
-Writing or editing PowerShell commands or scripts — especially variable naming, shell quoting, heredocs, or path/string interpolation that might fail silently or throw a `ParserError`.
+Writing or editing PowerShell commands or scripts — especially variable naming, shell quoting, heredocs, or path/string interpolation that might fail silently or throw a `ParserError`. Also when writing command blocks for the user to run manually on Windows.
 
 ## What's inside
 
-- [SKILL.md](SKILL.md) — the full pattern catalog: 12 numbered workflow rules, verification checklist, common failure modes
+- [SKILL.md](SKILL.md) — the full pattern catalog: 15 numbered workflow rules, verification checklist, common failure modes
 
 ## Install
 
