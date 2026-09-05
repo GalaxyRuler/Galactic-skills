@@ -1,0 +1,3 @@
+interface:
+  display_name: "Context Canary"
+  short_description: "Install a per-turn canary signal (e.g"
