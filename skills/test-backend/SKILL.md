@@ -1,6 +1,6 @@
 ---
 name: test-backend
-description: Use when asked to test a backend or API, contract-test, security-test an API, load/performance-test, chaos/resilience-test, or verify server correctness — generic, stack-agnostic back-end / API testing process for any service: unit + integration (Testing Trophy, real deps via Testcontainers), API contract (request+response schema, Pact/Schemathesis, breaking-change detection), data invariants, resilience + chaos, OWASP API Security Top 10 (2023) incl. two-account BOLA testing, and load/SLO. Detects the project's language/stack and runs the matching commands. Pairs with playbook.md in this skill folder.
+description: "Use when asked to test a backend or API, contract-test, security-test an API, load/performance-test, chaos/resilience-test, or verify server correctness — generic, stack-agnostic back-end / API testing process for any service: unit + integration (Testing Trophy, real deps via Testcontainers), API contract (request+response schema, Pact/Schemathesis, breaking-change detection), data invariants, resilience + chaos, OWASP API Security Top 10 (2023) incl. two-account BOLA testing, and load/SLO. Detects the project's language/stack and runs the matching commands. Pairs with playbook.md in this skill folder."
 ---
 
 # /test-backend — portable back-end testing runner

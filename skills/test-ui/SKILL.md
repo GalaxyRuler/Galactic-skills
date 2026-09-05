@@ -1,6 +1,6 @@
 ---
 name: test-ui
-description: Use when asked to UI-test, check accessibility/a11y, run visual-regression, responsive-test, audit the look and feel, verify components across themes/breakpoints/locales, or check localization/RTL rendering — generic, stack-agnostic UI testing process for any web project: visual regression, responsive + cross-browser, WCAG 2.2 AA accessibility (axe → manual → screen reader), component/state matrix, internationalization/locale-integrity (pseudo-locale + rendered-output scan), and design-token fidelity. Detects the project's stack and runs the matching commands. Pairs with playbook.md in this skill folder.
+description: "Use when asked to UI-test, check accessibility/a11y, run visual-regression, responsive-test, audit the look and feel, verify components across themes/breakpoints/locales, or check localization/RTL rendering — generic, stack-agnostic UI testing process for any web project: visual regression, responsive + cross-browser, WCAG 2.2 AA accessibility (axe → manual → screen reader), component/state matrix, internationalization/locale-integrity (pseudo-locale + rendered-output scan), and design-token fidelity. Detects the project's stack and runs the matching commands. Pairs with playbook.md in this skill folder."
 ---
 
 # /test-ui — portable UI testing runner

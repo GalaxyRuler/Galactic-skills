@@ -1,6 +1,6 @@
 ---
 name: ux-engineering
-description: Use when designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques — UX engineering and product design methodology: JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, and measurement (HEART/SUS).
+description: "Use when designing user interfaces, conducting UX research, building design systems, reviewing accessibility compliance, planning usability testing, defining product metrics, writing JTBD statements, structuring information architecture, auditing contrast/target sizes, or evaluating design critiques — UX engineering and product design methodology: JTBD research, information architecture, WCAG 2.2 AA accessibility, design systems, interaction design, and measurement (HEART/SUS)."
 ---
 
 # UX Engineering & Product Design

@@ -1,6 +1,6 @@
 ---
 name: test-ux
-description: Use when asked to UX-test, usability-test, run a UX audit, evaluate user experience, check novice-friendliness, assess whether users can complete a flow, or review content/localization clarity — generic, stack-agnostic UX testing process for any product: expert heuristic evaluation (Nielsen's 10), task-based cognitive walkthroughs, journey/state analysis, content + internationalization comprehension, and a real-user test-plan generator (moderated + unmoderated, SUS/SEQ). Pairs with playbook.md in this skill folder.
+description: "Use when asked to UX-test, usability-test, run a UX audit, evaluate user experience, check novice-friendliness, assess whether users can complete a flow, or review content/localization clarity — generic, stack-agnostic UX testing process for any product: expert heuristic evaluation (Nielsen's 10), task-based cognitive walkthroughs, journey/state analysis, content + internationalization comprehension, and a real-user test-plan generator (moderated + unmoderated, SUS/SEQ). Pairs with playbook.md in this skill folder."
 ---
 
 # /test-ux — portable UX testing runner
