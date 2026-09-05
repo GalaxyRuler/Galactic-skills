@@ -21,6 +21,7 @@ Produce publication-grade long-form articles and multi-part series the way an ed
 - Ships an **Arabic (Saudi/GCC) layer**: native-authored MSA rather than calqued English, project termbase, verified official institution names, Arabic-appropriate readability (never an English formula), and a hard gate against widening Saudi evidence into a GCC claim
 - Returns a full **publish packet** — ledgers, unresolved items, scores, metadata, named human approval — plus a corrections and freshness record
 - Reports a **semantic diff** alongside the text diff — which claims moved, which qualification disappeared
+- Names its **companion skills** (research-grounding, developing-nonfiction-books, obsidian-writing, and an optional public style-pass skill) and when to reach for the smaller tool instead
 
 ## When to use
 

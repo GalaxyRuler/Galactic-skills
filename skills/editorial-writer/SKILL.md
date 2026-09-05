@@ -127,6 +127,8 @@ Score against the rubric in [RUBRICS.md](references/RUBRICS.md), then revise one
 
 Do not fix a structure problem by rewriting the whole piece. Report what changed and why in a revision log.
 
+Run the **style pass** through the `fuck-slop` skill if installed rather than by hand — its mechanical scan catches the AI fingerprints (negative parallelism, em-dash abuse, rule-of-three, uniform cadence, hedged both-sidesing) that are invisible on self-re-read. Run it *after* the evidence audit, never before, and re-run the audit on any sentence whose qualification it removed. For an Arabic edition, `fuck-slop` handles register but not calque — run the §2 calque scan in [LOCALE-AR-GCC.md](references/LOCALE-AR-GCC.md) as well.
+
 ## 4. Gates
 
 **Hard gates** — block publication regardless of other scores:
@@ -166,3 +168,14 @@ Deliver artifacts, not only prose — the publish packet in [TEMPLATES.md](refer
 Published articles get a corrections and freshness record. A material error gets a dated correction, not a silent edit. Volatile content — statistics, regulation, prices, appointments — gets scheduled re-checks; bumping an "updated" date without substantive change is a freshness claim the article has not earned.
 
 For claim verification against live sources, pair with the `research-grounding` skill. For book-length projects, use `developing-nonfiction-books` instead.
+
+## 8. Companion skills
+
+| Need | Skill |
+|---|---|
+| Verify a claim against live sources before it enters the ledger | `research-grounding` (this repo) |
+| Style pass / strip AI tells (§3.7) | `fuck-slop` (public skill; install separately). Without it, run the tells checklist by hand |
+| Book-length project instead of an article | `developing-nonfiction-books` (this repo) |
+| Article lands in an Obsidian vault — frontmatter, wikilinks, board routing | `obsidian-writing` (this repo) |
+
+Reach for the smaller tool when the request is smaller than this machinery. A five-bullet summary does not need an evidence ledger.
