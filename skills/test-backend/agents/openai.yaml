@@ -1,3 +1,3 @@
 interface:
   display_name: "Test Backend"
-  short_description: "Generic, stack-agnostic back-end / API testing process for any"
+  short_description: "Use when asked to test a backend or API, contract-test"
